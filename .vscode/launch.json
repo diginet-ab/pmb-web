@@ -1,0 +1,39 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "chrome launch webpack",
+        "type": "chrome",
+        "request": "launch",
+        "port": 9222,
+        //"preLaunchTask": "debug-start",
+        //"postDebugTask": "debug-stop",
+        "url": "http://localhost:3000",
+        "webRoot": "${workspaceFolder}",
+        "skipFiles": [
+          "<node_internals>/**",
+          "${workspaceFolder}/node_modules/**",
+          "bootstrap"
+        ]
+      },
+      {
+        "name": "chrome launch parcel",
+        "type": "chrome",
+        "request": "launch",
+        "port": 9222,
+        //"preLaunchTask": "debug-start",
+        //"postDebugTask": "debug-stop",
+        "url": "http://localhost:1234",
+        "webRoot": "${workspaceFolder}",
+        "breakOnLoad": true,
+        "sourceMapPathOverrides": {
+          "../*": "${webRoot}/*"
+        },
+        "skipFiles": [
+          "<node_internals>/**",
+          "${workspaceFolder}/node_modules/**",
+          "bootstrap"
+        ]
+      }
+    ]
+  }

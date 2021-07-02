@@ -1,0 +1,27 @@
+  html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    /* Vertical lines */
+    background-color: white;
+    background-image:
+      linear-gradient(
+        to right,
+        lightgray 1px,
+        transparent 1px,
+        transparent 23px
+      ),
+      linear-gradient(
+        to bottom,
+        lightgray 1px,
+        transparent 1px,
+        transparent 23px
+      )
+    ;
+    /*background-position: 5px 0, 0 2px;*/
+    background-size: 25px 100%, 100% 25px;
+  }

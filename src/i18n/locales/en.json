@@ -1,0 +1,189 @@
+{
+  "custom": {
+    "title": "NIBE AirSite GreenMaster",
+    "email_or_username": "Email or Username",
+    "password": "Password",
+    "dateAfter": "Date after",
+    "dateBefore": "Date before",
+    "timeAfter": "Time after",
+    "timeBefore": "Time before",
+    "select": "Select",
+    "selectLanguage": "Select language",
+    "aggregatedMessages": "Aggregated messages",
+    "aggregatedMessagesPerUser": "Users",
+    "aggregatedMessagesPerProvider": "Providers",
+    "sent": "Sent",
+    "send": "Send",
+    "save": "Save",
+    "delivered": "Delivered",
+    "tools": "Tools",
+    "system": "On/off",
+    "setup": "Language",
+    "setupApplications": "Web setup",
+    "systemStatus": "Log",
+    "errorCount": "0 errors in last 24h",
+    "english": "English",
+    "swedish": "Swedish",
+    "browserDefaultLanguage": "Browser default",
+    "to": "to",
+    "message": "Message",
+    "programStatus": "Program status",
+    "supplyPressureSetPoint": "F.GQ1 pressure set point",
+    "exhaustPressureSetPoint": "T.GQ1 pressure set point",
+    "supplyFlowSetPoint": "F.GQ1 flow set point",
+    "exhaustFlowSetPoint": "T.GQ1 flow set point",
+    "temperatureSetPoint": "Temperature SP",
+    "ON": "System On/Off",
+    "operation": "Operation",
+    "supplyAir": "Supply air",
+    "fanSpeedPercent": "Fan speed (%)",
+    "pressurePascal": "Pressure (pascal)",
+    "pressureSetPointPascal": "Pressure SP (pascal)",
+    "outdoorAirTemperature": "Outdoor temperature",
+    "heatExchangerPercentOpen": "Heat exchanger (%)",
+    "supplyAirTemperature": "Supply air temp.",
+    "heatingValvepercentOpen": "Heating valve (%)",
+    "coolingValvePercentOpen": "Cooling valve (%)",
+    "extractAir": "Extract air",
+    "extractAirTemperature": "Extract air temp.",
+    "alarm": "Alarm",
+    "firealarmCentral": "Fire alarm, central",
+    "fireAlarmSupplyAir": "Fire alarm, supply air",
+    "serviceAlarmCentral": "Service alarm, central",
+    "serviceAlarmSupplyAir": "Service alarm, supply air",
+    "fuseAlarm": "Fuse alarm",
+    "fanAlarmSupplyAir": "Fan alarm, supply air",
+    "fanAlarmExtractAir": "Fan alarm, extract air",
+    "sensorStatus": "Sensor status",
+    "grouping": "Groups",
+    "subGrouping": "Subgroups",
+    "autoUpdate": "Auto",
+    "setPoint": "Set point |||| Set points",
+    "pressure": "Pressure",
+    "flow": "Flow",
+    "temperature": "Temperature",
+    "resetAllAlarms": "Reset ALL alarms",
+    "resetAlarm": "Reset",
+    "ackAlarm": "Acknowledge",
+    "overview": "Overview",
+    "systemName": "System name",
+    "import": "Import",
+    "autoRefresh": "1 hour auto refresh",
+    "systemEN": "System active",
+    "systemEN_Not": "System not active",
+    "systemEN_NoPLCRun": "System set as active but PLC stopped",
+    "RemoteEN": "Supervisor control",
+    "plcRun": "PLC active",
+    "plcRun_Not": "PLC not active",
+    "auto": "Auto",
+    "refresh": "refresh",
+    "tcAdsWebServiceTimeout": "TcAdsWebService timeout",
+    "component": "Component",
+    "components": "Components",
+    "plcError": "Invalid PLC state (RUN or STOP required)",
+    "details": "Details",
+    "dampers": "Dampers",
+    "systemState": "System state",
+    "deleteAllAlarms": "Remove all",
+    "alarmPanel": "Alarm panel",
+    "diagram": "Diagram (lab)",
+    "controlStatus": "Regulation status",
+    "temperatureSP": "Temperature SP",
+    "temperaturePV": "Temperature PV",
+    "supplySP": "Supply SP",
+    "supplyPV": "Supply PV",
+    "extractSP": "Extract SP",
+    "extractPV": "Extract PV",
+    "systemUpTime": "System up time",
+    "controlModeSupplyAir": "Supply control\n mode",
+    "controlModeExtractAir": "Extract control mode",
+    "dashboard": "Dashboard",
+    "digitalInputs": "Digital inputs",
+    "digitalOutputs": "Digital outputs",
+    "analogInputs": "Analog inputs",
+    "analogOutputs": "Analog outputs",
+    "simulation": "Simulation",
+    "chalmersStatus": "Chalmers LA02",
+    "supplySP_HighSpeed": "Supply SP Highspeed",
+    "extractSP_HighSpeed": "Extract SP Highspeed",
+    "upload": "Upload",
+    "uploadParameters": "Upload Parameters",
+    "downloadparameters": "Download parameters"
+  },
+  "pos": {
+    "search": "Search",
+    "configuration": "Configuration",
+    "language": "Language",
+    "theme": {
+      "name": "Theme",
+      "light": "Light",
+      "dark": "Dark"
+    },
+    "dashboard": {},
+    "menu": {
+      "settings": "Settings",
+      "status": "Status",
+      "setup": "Program setup"
+    }
+  },
+  "resources": {
+    "parameter": {
+      "name": "Parameters",
+      "fields": {
+        "name": "Name",
+        "siteName": "Site name",
+        "component": "Component",
+        "type": "Type",
+        "value": "Value",
+        "group": "Group"
+      }
+    },
+    "io": {
+      "name": "IO",
+      "fields": {}
+    },
+    "path1": {
+      "name": "Path1",
+      "fields": {}
+    },
+    "path2": {
+      "name": "Path2",
+      "fields": {
+        "path": "Path2"
+      }
+    },
+    "siteName": {
+      "name": "Site names",
+      "fields": {}
+    },
+    "alarm": {
+      "name": "Alarms",
+      "fields": {
+        "timeCreated": "Created",
+        "status": "Status"
+      }
+    },
+    "event": {
+      "name": "Events",
+      "fields": {
+        "timeCreated": "Created",
+        "message": "Message",
+        "template": "Template"
+      }
+    },
+    "debugLog": {
+      "name": "Debug log",
+      "fields": {}
+    },
+    "user": {
+      "name": "Users",
+      "email": "E-mail / username"
+    },
+    "component": {
+      "name": "Components",
+      "fields": {
+        "EN": "EN"
+      }
+    }
+  }
+}

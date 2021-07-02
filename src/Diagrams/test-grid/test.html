@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="test.css" media="screen" />
+</head>
+
+<body style="height: 100%">
+
+    <p>Drag the ball.</p>
+
+    <img src="https://js.cx/clipart/ball.svg" style="cursor:pointer" width="40" height="40" id="ball">
+
+    <div id="scroll-outer"  style="height: 100%">
+        <div id="scroll-inner" style="height: 100%">
+            <div id="handle" style="height: 100%">
+                Hi
+            </div>
+        </div>
+    </div>
+    <script>
+        ball.onmousedown = function (event) {
+            ball.style.position = 'absolute';
+            ball.style.zIndex = 1000;
+            document.body.appendChild(ball);
+
+            moveAt(event.pageX, event.pageY);
+
+            function moveAt(pageX, pageY) {
+                ball.style.left = pageX - ball.offsetWidth / 2 + 'px';
+                ball.style.top = pageY - ball.offsetHeight / 2 + 'px';
+            }
+
+            function onMouseMove(event) {
+                moveAt(event.pageX, event.pageY);
+            }
+
+            document.addEventListener('mousemove', onMouseMove);
+
+            ball.onmouseup = function () {
+                document.removeEventListener('mousemove', onMouseMove);
+                ball.onmouseup = null;
+            };
+
+        };
+
+
+        ball.ondragstart = function () {
+            return false;
+        };
+
+
+        function pointerDown(ev) {
+            console.log('pointerDown')
+            scrollInner.addEventListener("pointermove", pointerMove);
+            scrollInner.addEventListener("pointerup", pointerUp);
+
+            dragStartX = ev.pageX; dragStartY = ev.pageY;
+        }
+
+        function pointerMove(ev) {
+            console.log('pointerMove')
+            body.style = `background-position: ${ (ev.pageX - dragStartX) % 25 }px 0, 0 ${ (ev.pageY - dragStartY) % 25 }px;`
+            handle.style.transform = "translate3d(" +
+                (x + ev.pageX - dragStartX) + "px, " +
+                (y + ev.pageY - dragStartY) + "px, 0)";
+        }
+
+        function pointerUp(ev) {
+            console.log('pointerUp')
+            scrollInner.removeEventListener("pointermove", pointerMove);
+            scrollInner.removeEventListener("pointerup", pointerUp);
+
+            x = x + ev.pageX - dragStartX;
+            y = y + ev.pageY - dragStartY;
+        }
+
+        var x = 0;
+        var y = 0;
+        var dragStartX = 0;
+        var dragStartY = 0;
+
+        var body = document.getElementsByTagName('body')[0]
+        var handle = document.getElementById("handle");
+        var scrollInner = document.getElementById("scroll-inner");
+        handle.addEventListener("pointerdown", pointerDown);    
+    </script>
+
+
+</body>

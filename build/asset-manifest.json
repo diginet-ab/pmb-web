@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "./static/css/main.795991f2.chunk.css",
+    "main.js": "./static/js/main.08b38273.chunk.js",
+    "runtime-main.js": "./static/js/runtime-main.75c8c25c.js",
+    "static/css/2.b1f234f1.chunk.css": "./static/css/2.b1f234f1.chunk.css",
+    "static/js/2.971071a2.chunk.js": "./static/js/2.971071a2.chunk.js",
+    "index.html": "./index.html",
+    "precache-manifest.271a357b843ac669c7845758aad41b38.js": "./precache-manifest.271a357b843ac669c7845758aad41b38.js",
+    "service-worker.js": "./service-worker.js",
+    "static/media/NIBE_AirSite_vector_logo.svg": "./static/media/NIBE_AirSite_vector_logo.e13bcfb7.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.75c8c25c.js",
+    "static/css/2.b1f234f1.chunk.css",
+    "static/js/2.971071a2.chunk.js",
+    "static/css/main.795991f2.chunk.css",
+    "static/js/main.08b38273.chunk.js"
+  ]
+}

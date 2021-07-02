@@ -1,0 +1,232 @@
+{
+  "Network Error": "Nätverksfel",
+  "custom": {
+    "title": "NIBE AirSite GreenMaster",
+    "email_or_username": "Email eller användarnamn",
+    "password": "Lösenord",
+    "dateAfter": "Datum efter",
+    "dateBefore": "Datum före",
+    "timeAfter": "Tid efter",
+    "timeBefore": "Tid före",
+    "select": "Välj",
+    "selectLanguage": "Välj språk",
+    "aggregatedMessages": "Aggregerade meddelanden",
+    "aggregatedMessagesPerUser": "Användare",
+    "aggregatedMessagesPerProvider": "SMS-leverantörer",
+    "sent": "Sända",
+    "send": "Skicka",
+    "save": "Spara",
+    "delivered": "Levererade",
+    "tools": "Verktyg",
+    "system": "Av/på",
+    "setup": "Språkval",
+    "setupApplications": "Inställningar för web",
+    "systemStatus": "Logg",
+    "errorCount": "0 fel senaste 24 tim",
+    "english": "Engelska",
+    "swedish": "Svenska",
+    "browserDefaultLanguage": "Webbläsaren standardval",
+    "to": "till",
+    "message": "Meddelande",
+    "programStatus": "Programstatus",
+    "supplyPressureSetPoint": "F.GQ1 SP (pascal)",
+    "exhaustPressureSetPoint": "T.GQ1 SP (pascal)",
+    "supplyFlowSetPoint": "F.GQ1 SP (L/s)",
+    "exhaustFlowSetPoint": "T.GQ1 SP (L/s)",
+    "temperatureSetPoint": "Temperatur SP",
+    "ON": "System på/av",
+    "operation": "Drift",
+    "supplyAir": "Tilluft",
+    "fanSpeedPercent": "Fläkthastighet (%)",
+    "pressurePascal": "Tryck (pascal)",
+    "pressureSetPointPascal": "Tryck SP (pascal)",
+    "outdoorAirTemperature": "Utomhustemperatur",
+    "heatExchangerPercentOpen": "VVX (% öppen)",
+    "supplyAirTemperature": "Tilluftstemperatur",
+    "heatingValvepercentOpen": "Värmeventil (%)",
+    "coolingValvePercentOpen": "Kylventil (%)",
+    "extractAir": "Frånluft",
+    "extractAirTemperature": "Frånluftstemperatur",
+    "alarm": "Larm",
+    "firealarmCentral": "Brandlarm, centralt",
+    "fireAlarmSupplyAir": "Brandlarm, tilluft",
+    "serviceAlarmCentral": "Servicelarm, centralt",
+    "serviceAlarmSupplyAir": "Servicelarm, tilluft",
+    "fuseAlarm": "Säkringslarm",
+    "fanAlarmSupplyAir": "Fläktlarm, tilluft",
+    "fanAlarmExtractAir": "Fläktlarm, frånluft",
+    "sensorStatus": "Givarstatus",
+    "grouping": "Grupper",
+    "subGrouping": "Undergrupper",
+    "autoUpdate": "Auto",
+    "setPoint": "Börvärden",
+    "pressure": "Tryck",
+    "flow": "Flöde",
+    "temperature": "Temperatur",
+    "resetAllAlarms": "Återställ ALLA larmer",
+    "resetAlarm": "Återställt",
+    "ackAlarm": "Kvittera",
+    "overview": "Diagram",
+    "systemName": "Systemnamn",
+    "import": "Importera",
+    "autoRefresh": "1 timma automatisk uppdatering",
+    "systemEN": "System aktivt",
+    "systemEN_Not": "System ej aktivt",
+    "systemEN_NoPLCRun": "System satt som aktivt men PLC stoppad",
+    "RemoteEN": "Överordnad styrning",
+    "plcRun": "PLC aktiv",
+    "plcRun_Not": "PLC ej aktiv",
+    "auto": "Auto",
+    "refresh": "uppdatera",
+    "tcAdsWebServiceTimeout": "TcAdsWebService svarade ej i tid",
+    "component": "Komponent",
+    "components": "Komponenter",
+    "plcError": "PLC i ogiltigt tillstånd (RUN eller STOP krävs)",
+    "details": "Detaljer",
+    "dampers": "Spjäll",
+    "systemState": "Systemtillstånd",
+    "deleteAllAlarms": "Radera alla",
+    "alarmPanel": "Larmpanel",
+    "diagram": "Diagram (lab)",
+    "controlStatus": "Reglerstatus",
+    "temperatureSP": "Temperatur SP",
+    "temperaturePV": "Temperatur PV",
+    "supplySP": "Tilluft SP",
+    "supplyPV": "Tilluft PV",
+    "extractSP": "Frånluft SP",
+    "extractPV": "Frånluft PV",
+    "systemUpTime": "Tid system uppe",
+    "controlModeSupplyAir": "Reglermod tilluft",
+    "controlModeExtractAir": "Reglermod frånluft",
+    "dashboard": "Översikt",
+    "digitalInputs": "Digitala ingångar",
+    "digitalOutputs": "Digitala utgångar",
+    "analogInputs": "Analoga ingångar",
+    "analogOutputs": "Analoga utgångar",
+    "simulation": "Simulering",
+    "chalmersStatus": "Chalmers LA02",
+    "supplySP_HighSpeed": "Tilluft SP högfart",
+    "extractSP_HighSpeed": "Frånluft SP högfart",
+    "upload": "Ladda upp",
+    "uploadParameters": "Ladda upp parametrar",
+    "downloadparameters": "Ladda ner parametrar"
+  },
+  "pos": {
+    "search": "Sök",
+    "configuration": "Konfiguration",
+    "language": "Språk",
+    "theme": {
+      "name": "Tema",
+      "light": "Ljus",
+      "dark": "Mörk"
+    },
+    "dashboard": {},
+    "menu": {
+      "settings": "Inställningar",
+      "status": "Status",
+      "setup": "Programinställningar"
+    }
+  },
+  "resources": {
+    "parameter": {
+      "name": "Parametrar",
+      "fields": {
+        "name": "Namn",
+        "component": "Komponent",
+        "unit": "Enhet",
+        "path": "Sökväg",
+        "group": "Grupp",
+        "siteName": "Anl. namn",
+        "type": "Typ",
+        "value": "Värde",
+        "comment": "Beskrivning",
+        "product": "Produkt"
+      }
+    },
+    "io": {
+      "name": "IO",
+      "fields": {
+        "name": "Namn",
+        "component": "Komponent",
+        "unit": "Enhet",
+        "path": "Sökväg",
+        "siteName": "Anl. namn",
+        "type": "Typ",
+        "value": "Värde",
+        "comment": "Beskrivning"
+      }
+    },
+    "path1": {
+      "name": "Path1",
+      "fields": {
+        "path": "Path1"
+      }
+    },
+    "path2": {
+      "name": "Path2",
+      "fields": {
+        "path": "Path2"
+      }
+    },
+    "siteName": {
+      "name": "Anl. namn |||| Anl. namn",
+      "fields": {
+        "path": "Sökväg",
+        "siteName": "Anl. namn"
+      }
+    },
+    "alarm": {
+      "name": "Larm",
+      "fields": {
+        "time": "Tid",
+        "alarms": "Larmer",
+        "notes": "Noteringar",
+        "timeCreated": "Skapad",
+        "status": "Status",
+        "statusCode": "Statuskod"
+      }
+    },
+    "event": {
+      "name": "Händelser",
+      "fields": {
+        "time": "Tid",
+        "kind": "Typ",
+        "timeCreated": "Skapad",
+        "message": "Meddelande",
+        "template": "Mall",
+        "status": "Status",
+        "statusCode": "Statuskod"
+      }
+    },
+    "debugLog": {
+      "name": "Debug log",
+      "fields": {
+        "time": "Tid",
+        "message": "Meddelande",
+        "stack": "Stack",
+        "status": "Status"
+      }
+    },
+    "user": {
+      "name": "Användare",
+      "fields": {
+        "name": "Namn",
+        "email": "E-mail / användarnamn",
+        "permissions": "Behörighet",
+        "phone": "Telefon",
+        "password": "Lösenord"
+      }
+    },
+    "component": {
+      "name": "Komponenter",
+      "fields": {
+        "name": "Namn",
+        "EN": "EN",
+        "path": "Sökväg",
+        "resource": "Resurs",
+        "permissions": "Behörighet",
+        "parameters": "Parametrar"
+      }
+    }
+  }
+}
