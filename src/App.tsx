@@ -115,8 +115,15 @@ const commonThemeProps = {
         MuiToolbar: {
             root: {
             },
-
-        }
+        },
+        RaSidebar: {
+            drawerPaper: {
+                width: (props: { open?: boolean }) => (props.open ? 90 : 55),
+            },
+            fixed: {
+                zIndex: 1200,
+            },
+        },
     }
 }
 
@@ -150,7 +157,7 @@ const darkTheme = {
 
 export let _adsClients: AdsClients
 
-export const appVersion = { version: '0.23' }
+export const appVersion = { version: '0.24' }
 
 const App = () => {
     const [adsReady, setAdsReady] = useState(false)
@@ -277,7 +284,7 @@ const App = () => {
             <Resource name="path1" />,
             <Resource name="path2" />,
         ]}
-    </Admin>}/> :
+    </Admin>} /> :
         <div style={{ position: 'absolute', left: '50%', top: '50%', color: '#283593', transform: 'translate(-50%, -50%)' }} >
             <b>NIBE AirSite GreenMaster {appVersion.version}</b>
             <Loader

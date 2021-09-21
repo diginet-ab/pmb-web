@@ -138,7 +138,10 @@ export default () => {
             setAlarmList(list)
         }
     }, [alarms])
-
+    const unitAIN = ["°C", "°C", "°C", "°C", "°C", "°C", "°C", "°C", "Pa", "Pa", "Pa", "Pa", "Pa", "l/s", "l/s"]
+    const decimalsAIN = [1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0]
+    const unitAOUT = ["%", "%", "%", "%", "%"]
+    const decimalsAOUT = [0, 0, 0, 0, 0]
     return (
         <Box display="flex" flexDirection="column" justifyContent="spaceEvenly">
             <Title title={translate('custom.title') + ' ' + appInfo.hostName + " / " + translate('custom.dashboard')} />
@@ -228,15 +231,16 @@ export default () => {
                 <CardContent>
                     <Box display="flex" flexWrap="wrap" flexDirection="row" justifyContent="spaceEvenly" alignItems="center" >
                         <PlcNumberField plcVar="$(GM_BASE).IO.AIn.T_BT2" decimals={1} onScale={(value: number) => value} label={translate("custom.outdoorAirTemperature")} template={ '{0} °C' } />
-                        <PlcNumberField plcVar="$(GM_BASE).Regulation.SupplyAir.Control.CV" onScale={(value: number) => value * 100} label={translate("custom.fanSpeedPercent")} template={ '{0} %' } />
-                        <PlcNumberField plcVar="$(GM_BASE).IO.AOut.F_QN1" onScale={(value: number) => value * 100} label={translate("custom.heatExchangerPercentOpen")} template={ '{0} %' } />
-                        <PlcNumberField plcVar="$(GM_BASE).IO.AOut.H_QN1" onScale={(value: number) => value * 100} label={translate("custom.heatingValvepercentOpen")} template={ '{0} %' } />
+                        <PlcNumberField plcVar="$(GM_BASE).Regulation.SupplyAir.Control.CV" onScale={(value: number) => value * 100} label={translate("custom.fanSpeedPercent")} decimals={0} template={ '{0} %' } />
+                        <PlcNumberField plcVar="$(GM_BASE).IO.AOut.F_QN1" onScale={(value: number) => value * 100} label={translate("custom.heatExchangerPercentOpen")} decimals={0} template={ '{0} %' } />
+                        <PlcNumberField plcVar="$(GM_BASE).IO.AOut.H_QN1" onScale={(value: number) => value * 100} label={translate("custom.heatingValvepercentOpen")} decimals={0} template={ '{0} %' } />
                         <PlcIcon iconTrue={<CheckCircleIcon />} iconFalse={<CancelOnIcon />} plcVar="$(GM_BASE).IO.DOut.H_GP1"
                             label="H.GP1" inverted={false} colorFalse="gray" colorTrue="orange" style={{}} />
-                        <PlcNumberField plcVar="$(GM_BASE).IO.AOut.C_QN1" onScale={(value: number) => value * 100} label={translate("custom.coolingValvePercentOpen")} template={ '{0} %' } />
+                        <PlcNumberField plcVar="$(GM_BASE).IO.AOut.C_QN1" onScale={(value: number) => value * 100} label={translate("custom.coolingValvePercentOpen")} decimals={0} template={ '{0} %' } />
                         <PlcIcon iconTrue={<CheckCircleIcon />} iconFalse={<CancelOnIcon />} plcVar="$(GM_BASE).IO.DOut.C_GP1"
                             label="C.GP1" inverted={false} colorFalse="gray" colorTrue="blue" style={{}} />
-                        <PlcNumberField plcVar="$(GM_BASE).IO.AIn.T_BT1" decimals={2} onScale={(value: number) => value} label={translate("custom.supplyAirTemperature")} template={ '{0} °C' } />
+                        <PlcNumberField plcVar="$(GM_BASE).IO.AIn.T_BT1" decimals={1} onScale={(value: number) => value} label={translate("custom.supplyAirTemperature")} template={ '{0} °C' } />
+                        <PlcNumberField plcVar="$(GM_BASE).IO.AIn.T_BF1" decimals={0} onScale={(value: number) => value} label={translate("custom.supplyAirFlow")} template={ '{0} l/s' } />
                     </Box>
                 </CardContent>
             </Card>
@@ -245,8 +249,9 @@ export default () => {
                 <CardHeader title={translate("custom.extractAir")} />
                 <CardContent>
                     <Box display="flex" flexWrap="wrap" flexDirection="row" justifyContent="spaceEvenly" alignItems="flex-start" >
-                        <PlcNumberField plcVar="$(GM_BASE).IO.AIn.F_BT1" decimals={2} onScale={(value: number) => value} label={translate("custom.extractAirTemperature")} template={ '{0} °C' } />
-                        <PlcNumberField plcVar="$(GM_BASE).Regulation.ExtractAir.Control.CV" onScale={(value: number) => value * 100} label={translate("custom.fanSpeedPercent")} template={ '{0} %' } />
+                        <PlcNumberField plcVar="$(GM_BASE).IO.AIn.F_BT1" decimals={1} onScale={(value: number) => value} label={translate("custom.extractAirTemperature")} template={ '{0} °C' } />
+                        <PlcNumberField plcVar="$(GM_BASE).IO.AIn.F_BF1" decimals={0} onScale={(value: number) => value} label={translate("custom.extractAirFlow")} template={ '{0} l/s' } />
+                        <PlcNumberField plcVar="$(GM_BASE).Regulation.ExtractAir.Control.CV" onScale={(value: number) => value * 100} label={translate("custom.fanSpeedPercent")} decimals={0} template={ '{0} %' } />
                     </Box>
                 </CardContent>
             </Card>
@@ -312,7 +317,7 @@ export default () => {
                 <CardHeader title={translate("custom.analogInputs")} />
                 <CardContent>
                     <Box display="flex" flexWrap="wrap" flex-direction="row" justifyContent="spaceEvenly">
-                        { Object.entries(aInObject).map((item, index) => (typeof item[1] === 'number') ? <PlcNumberField key={index.toString()} plcVar={ `$(GM_BASE).IO.AIn.${ item[0] }` } label={ item[0] } /> : null) }
+                        { Object.entries(aInObject).map((item, index) => (typeof item[1] === 'number') ? <PlcNumberField key={index.toString()} plcVar={ `$(GM_BASE).IO.AIn.${ item[0] }` } label={ item[0] } decimals={ decimalsAIN[index] } template={ `{0} ${ unitAIN[index] }` } /> : null) }
                     </Box>
                 </CardContent>
             </Card>
@@ -321,7 +326,7 @@ export default () => {
                 <CardHeader title={translate("custom.analogOutputs")} />
                 <CardContent>
                     <Box display="flex" flexWrap="wrap" flex-direction="row" justifyContent="spaceEvenly">
-                        { Object.entries(aOutObject).map((item, index) => (typeof item[1] === 'number') ? <PlcNumberField key={index.toString()} plcVar={ `$(GM_BASE).IO.AOut.${ item[0] }` } label={ item[0] } /> : null) }
+                        { Object.entries(aOutObject).map((item, index) => (typeof item[1] === 'number') ? <PlcNumberField key={index.toString()} plcVar={ `$(GM_BASE).IO.AOut.${ item[0] }` } label={ item[0] } decimals={ decimalsAOUT[index] } template={ `{0} ${ unitAOUT[index] }` } onScale={(value: number) => value * 100} /> : null) }
                     </Box>
                 </CardContent>
             </Card>

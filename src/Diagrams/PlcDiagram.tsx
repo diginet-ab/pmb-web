@@ -63,7 +63,7 @@ class PlcDiagramEngine extends DiagramEngine {
     constructor(options: CanvasEngineOptions = {}) {
         super(options)
         // register model factories
-        this.getLayerFactories().registerFactory(new NodeLayerFactory())
+        /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!! this.getLayerFactories().registerFactory(new NodeLayerFactory())
         this.getLayerFactories().registerFactory(new LinkLayerFactory())
         this.getLayerFactories().registerFactory(new SelectionBoxLayerFactory())
 
@@ -72,7 +72,7 @@ class PlcDiagramEngine extends DiagramEngine {
         this.getLinkFactories().registerFactory(new DefaultLinkFactory())
         this.getLinkFactories().registerFactory(new PathFindingLinkFactory())
         this.getPortFactories().registerFactory(new DefaultPortFactory())
-
+*/
         // register the default interaction behaviours
         this.getStateMachine().pushState(new DefaultDiagramState())
 

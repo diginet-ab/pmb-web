@@ -31,8 +31,8 @@
     "programStatus": "Programstatus",
     "supplyPressureSetPoint": "F.GQ1 SP (pascal)",
     "exhaustPressureSetPoint": "T.GQ1 SP (pascal)",
-    "supplyFlowSetPoint": "F.GQ1 SP (L/s)",
-    "exhaustFlowSetPoint": "T.GQ1 SP (L/s)",
+    "supplyFlowSetPoint": "F.GQ1 SP (l/s)",
+    "exhaustFlowSetPoint": "T.GQ1 SP (l/s)",
     "temperatureSetPoint": "Temperatur SP",
     "ON": "System på/av",
     "operation": "Drift",
@@ -109,7 +109,10 @@
     "extractSP_HighSpeed": "Frånluft SP högfart",
     "upload": "Ladda upp",
     "uploadParameters": "Ladda upp parametrar",
-    "downloadparameters": "Ladda ner parametrar"
+    "downloadparameters": "Ladda ner parametrar",
+    "supplyAirFlow": "Tilluftsflöde",
+    "extractAirFlow": "Frånluftsflöde",
+    "setPointAdjustment": "Börvärdesjustering"
   },
   "pos": {
     "search": "Sök",
@@ -228,5 +231,8 @@
         "parameters": "Parametrar"
       }
     }
-  }
+  },
+  "Show": "Visa",
+  "Hide": "Dölj",
+  "Set Point Adjustment": "Börvärdesjustering"
 }

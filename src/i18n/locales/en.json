@@ -108,7 +108,10 @@
     "extractSP_HighSpeed": "Extract SP Highspeed",
     "upload": "Upload",
     "uploadParameters": "Upload Parameters",
-    "downloadparameters": "Download parameters"
+    "downloadparameters": "Download parameters",
+    "supplyAirFlow": "Supply air flow",
+    "extractAirFlow": "Extract air flow",
+    "setPointAdjustment": "Set Point Adjustment"
   },
   "pos": {
     "search": "Search",
@@ -185,5 +188,8 @@
         "EN": "EN"
       }
     }
-  }
+  },
+  "Show": "Show",
+  "Hide": "Hide",
+  "Set Point Adjustment": "Set Point Adjustment"
 }

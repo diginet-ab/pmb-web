@@ -5,7 +5,7 @@ import {
     useTranslate, useDataProvider, useRefresh, usePermissions, AutocompleteInput, Pagination, useListContext,
 } from 'react-admin';
 import { ListEditActions, ListShowActions } from "./CommonActions"
-import { Button, CardActions, Checkbox, Toolbar, Tooltip, Typography, useMediaQuery } from '@material-ui/core';
+import { Button, CardActions, Checkbox, makeStyles, Toolbar, Tooltip, Typography, useMediaQuery } from '@material-ui/core';
 import InputFiles from './InputFiles';
 import neatCsv from 'neat-csv';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload'
@@ -19,7 +19,7 @@ import momentDurationFormatSetup from 'moment-duration-format'
 import { ChevronLeft, ChevronRight } from '@material-ui/icons';
 import { appInfo } from './App';
 //import { DataProviderContext } from 'react-admin';
-import { EditNode, SimpleForm, TreeWithDetails, useTreeController } from '@react-admin/ra-tree'
+import { EditNode, SimpleForm, TreeWithDetails, TreeWithDetailsProps, useTreeController, NodeActions } from '@react-admin/ra-tree'
 
 momentDurationFormatSetup(moment)
 
@@ -256,6 +256,20 @@ const PostPagination = (props: any) => {
     )
 }
 
+const useStyles = makeStyles({
+    root: {
+        '& .MuiCardContent-root': {
+            overflowY: 'auto',
+            maxHeight: '80vh', // You might have to tweak this value
+        }
+    }
+})
+
+const MyTreeWithDetails = (props: TreeWithDetailsProps) => {
+    const classes = useStyles(props);
+    return <TreeWithDetails {...props} className={classes.root} />
+ }
+
 export const ParameterList = (props: JSX.IntrinsicAttributes) => {
     const translate = useTranslate()
     const locale = useLocale()
@@ -288,24 +302,16 @@ export const ParameterList = (props: JSX.IntrinsicAttributes) => {
         console.log('dataProvider2: ' + result)
     })()
     */
-    return <TreeWithDetails {...props} allowMultipleRoots titleField="title" defaultSelectedKeys={['5']} actions={<ParameterActions />}
-        edit={ParameterEdit}
-        pagination={isSmall ? null : <ParameterPagination />}
+    return <MyTreeWithDetails {...props} allowMultipleRoots titleField="title" defaultSelectedKeys={['5']} nodeActions={<MyActions />}
+        edit={ParameterEdit}        
         title={getTitleText((props as any).resource, translate, isSmall)}
-        filters={<ParameterFilter />}
-        sort={{ field: 'path', order: 'ASC' }}
-        bulkActionButtons={false} >
-        {isSmall ?
-            <div>
-                <ParameterListSmall />
-                <PostPagination />
-            </div>
-            : <EditableDatagrid editForm={<EditForm />} noDelete rowClick={'edit' /* rowClick */} defaultColumns={['name', 'path', 'siteName', 'type', 'value', 'comment']} >
-                {columns}
-            </EditableDatagrid>
-        }
-    </TreeWithDetails>
+        />
 }
+
+const MyActions = (props: any) => (
+    <NodeActions {...props}>
+    </NodeActions>
+  )
 
 // const rowClick = (id: string, basePath: string, record: any) => 'edit' // record.write ? 'edit' : 'show'
 

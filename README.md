@@ -188,7 +188,7 @@ The codes have the following meaning:
 | min n               | number     | Min numeric value, ex N3.14                                  | No limit            |
 | max n               | number     | Max numeric value, ex X3.15                                  | No limit            |
 | step n              | number     | Step for numeric values, arrow up/down or buttons            | 1                   |
-| unit "n"            | unit       | Unit for numeric parameters such as `C`, `s`, `L/s` or `minutes`, double quotes must be used | ""                  |
+| unit "n"            | unit       | Unit for numeric parameters such as `C`, `s`, `l/s` or `minutes`, double quotes must be used | ""                  |
 | scale "x0 y0 x1 y1" | range      | Scale numerical value from (x0, y0) to (x1, y1)              | No scaling          |
 
 
