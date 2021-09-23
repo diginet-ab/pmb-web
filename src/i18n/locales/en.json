@@ -111,7 +111,10 @@
     "downloadparameters": "Download parameters",
     "supplyAirFlow": "Supply air flow",
     "extractAirFlow": "Extract air flow",
-    "setPointAdjustment": "Set Point Adjustment"
+    "setPointAdjustment": "Set Point Adjustment",
+    "temperatureCSP": "Calculated SP",
+    "supplyCSP": "Calculated SP",
+    "extractCSP": "Calculated SP"
   },
   "pos": {
     "search": "Search",

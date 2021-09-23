@@ -469,6 +469,7 @@ export const PlcNumberEdit = (props: { plcVar: string, label: string, decimals?:
         <Box display="flex">
             <TextField
                 label={props.label}
+                style={{ width: "60%"}}
                 value={value}
                 type="number"
                 onKeyPress={async event => {

@@ -112,7 +112,10 @@
     "downloadparameters": "Ladda ner parametrar",
     "supplyAirFlow": "Tilluftsflöde",
     "extractAirFlow": "Frånluftsflöde",
-    "setPointAdjustment": "Börvärdesjustering"
+    "setPointAdjustment": "Börvärdesjustering",
+    "temperatureCSP": "Beräknad SP",
+    "supplyCSP": "Beräknad SP",
+    "extractCSP": "Beräknad SP"
   },
   "pos": {
     "search": "Sök",

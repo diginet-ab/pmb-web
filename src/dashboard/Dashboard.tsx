@@ -213,14 +213,17 @@ export default () => {
                 <CardContent>
                     <Box display="flex" flexWrap="wrap" flexDirection="row" justifyContent="spaceEvenly">
                         <PlcNumberField plcVar="$(GM_BASE).Regulation.Temperature.Control.SP" label={translate("custom.temperatureSP")} template={ '{0} °C' } />
+                        <PlcNumberField plcVar="ADS_Standard.Tags.Status.Temperature_CSP" label={translate("custom.temperatureCSP")} template={ '{0} °C' } />
                         <PlcNumberField plcVar="$(GM_BASE).Regulation.Temperature.Control.PV" label={translate("custom.temperaturePV")} template={ '{0} °C' } />
                     </Box>
                     <Box display="flex" flexWrap="wrap" flexDirection="row" justifyContent="spaceEvenly">
                         <PlcNumberField plcVar="$(GM_BASE).Regulation.SupplyAir.Control.SP" decimals={ supplyAirDecimals } label={translate("custom.supplySP")} template={ `{0} ${ unitSupplyAir }` } />
+                        <PlcNumberField plcVar="ADS_Standard.Tags.Status.T_BP1_CSP" label={translate("custom.supplyCSP")} template={ '{0} °C' } />
                         <PlcNumberField plcVar="$(GM_BASE).Regulation.SupplyAir.Control.PV" decimals={ supplyAirDecimals } label={translate("custom.supplyPV")} template={ `{0} ${ unitSupplyAir }` } />
                     </Box>
                     <Box display="flex" flexWrap="wrap" flexDirection="row" justifyContent="spaceEvenly">
                         <PlcNumberField plcVar="$(GM_BASE).Regulation.ExtractAir.Control.SP" decimals={ extractAirDecimals } label={translate("custom.extractSP")} template={ `{0} ${ unitExtractAir }` } />
+                        <PlcNumberField plcVar="ADS_Standard.Tags.Status.F_BP1_CSP" label={translate("custom.extractCSP")} template={ '{0} °C' } />
                         <PlcNumberField plcVar="$(GM_BASE).Regulation.ExtractAir.Control.PV" decimals={ extractAirDecimals } label={translate("custom.extractPV")} template={ `{0} ${ unitExtractAir }` } />
                     </Box>
                 </CardContent>

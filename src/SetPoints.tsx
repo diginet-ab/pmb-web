@@ -45,7 +45,7 @@ const Collapse = ({ label, collapsed, children }: any) => {
             <button style={{ display: "block", width: "100%" }}
                 onClick={() => setIsCollapsed(!isCollapsed)}
             >
-                {isCollapsed ? translate('Show') : translate('Hide')} { label }
+                {isCollapsed ? translate('Show') : translate('Hide')} {label}
             </button>
             <div style={{ display: isCollapsed ? "none" : "block" }}>
                 {children}
@@ -57,33 +57,28 @@ const Collapse = ({ label, collapsed, children }: any) => {
 const EditSetPointAdjustment = (props: { plcPath: string }) => {
     const translate = useTranslate()
     const [open, setOpen] = useState(true)
-    const [value, setValue] = useState(1)
     return <Collapse collapsed={true} label={translate("Set Point Adjustment")}><Card>
         <CardContent>
             <Box display="flex" flexDirection="row" >
-                <TextField
-                    label={"Index"}
-                    value={value}
-                    type="number"
-                    InputProps={{ inputProps: { min: 1, max: 9 } }}
-                    style={{ width: "60" }}
-                    onChange={async event => {
-                        setValue(parseInt(event.target.value))
-                    }} />
-                <PlcNumberEdit
-                    plcVar={props.plcPath + ".X" + value}
-                    label={"X" + value}
-                    decimals={1}
-                    unit="°C"
-                    step={0.1}
-                    writeOnChange={true} />
-                <PlcNumberEdit
-                    plcVar={props.plcPath + ".Y" + value}
-                    label={"Y" + value}
-                    decimals={1}
-                    unit="°C"
-                    step={0.1}
-                    writeOnChange={true} />
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((value) =>
+                    <Box display="flex" flexDirection="column" >
+                        <PlcNumberEdit
+                            plcVar={props.plcPath + ".Y" + value}
+                            label={"Y" + value}
+                            decimals={1}
+                            unit="°C"
+                            step={0.1}
+                            writeOnChange={true} />
+                        <PlcNumberEdit
+                            plcVar={props.plcPath + ".X" + value}
+                            label={"X" + value}
+                            decimals={1}
+                            unit="°C"
+                            step={0.1}
+                            writeOnChange={true} />
+                    </Box>
+                )
+                }
             </Box>
         </CardContent>
     </Card></Collapse>
