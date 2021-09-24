@@ -9,7 +9,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import TextField from '@material-ui/core/TextField';
 import Box from '@material-ui/core/Box';
-import { createMuiTheme, makeStyles } from '@material-ui/core/styles';
+import { createTheme, makeStyles } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import LockIcon from '@material-ui/icons/Lock';
 import { Notification, useTranslate, useLogin, useNotify, RefreshButton } from 'react-admin';
@@ -185,7 +185,7 @@ Login.propTypes = {
 // Because otherwise the useStyles() hook used in Login won't get
 // the right theme
 const LoginWithTheme = (props: any) => (
-    <ThemeProvider theme={createMuiTheme(lightTheme)}>
+    <ThemeProvider theme={createTheme(lightTheme)}>
         <Login {...props} />
     </ThemeProvider>
 );
