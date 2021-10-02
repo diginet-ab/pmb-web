@@ -8,10 +8,13 @@ import { CanvasEngineOptions, SelectionBoxLayerFactory, InputType } from '@proje
 import { DiagramEngine, NodeLayerFactory, LinkLayerFactory, DefaultDiagramState, DiagramModel } from '@projectstorm/react-diagrams-core'
 import { DefaultLabelFactory, DefaultNodeFactory, DefaultLinkFactory, DefaultPortFactory, DefaultLinkModel } from '@projectstorm/react-diagrams-defaults'
 import { PathFindingLinkFactory } from '@projectstorm/react-diagrams'
+import { ValueNodeModel } from './value-node-ts/ValueNodeModel'
+import { ValueNodeFactory } from './value-node-ts/ValueNodeFactory'
 
 const useStyles = makeStyles({
     customNode: {
-        border: 'solid 2px gray',
+        //border: 'solid 2px gray',
+        border: 'none',
         borderRadius: '5px',
         //width: '300px',
         height: '50px',
@@ -63,8 +66,8 @@ class PlcDiagramEngine extends DiagramEngine {
     constructor(options: CanvasEngineOptions = {}) {
         super(options)
         // register model factories
-        /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!! this.getLayerFactories().registerFactory(new NodeLayerFactory())
-        this.getLayerFactories().registerFactory(new LinkLayerFactory())
+        this.getLayerFactories().registerFactory(new NodeLayerFactory() as any)
+        this.getLayerFactories().registerFactory(new LinkLayerFactory() as any)
         this.getLayerFactories().registerFactory(new SelectionBoxLayerFactory())
 
         this.getLabelFactories().registerFactory(new DefaultLabelFactory())
@@ -72,7 +75,7 @@ class PlcDiagramEngine extends DiagramEngine {
         this.getLinkFactories().registerFactory(new DefaultLinkFactory())
         this.getLinkFactories().registerFactory(new PathFindingLinkFactory())
         this.getPortFactories().registerFactory(new DefaultPortFactory())
-*/
+
         // register the default interaction behaviours
         this.getStateMachine().pushState(new DefaultDiagramState())
 
@@ -121,6 +124,7 @@ export const useDiagramEngine = (edit: boolean, gridOffset: PlcGridOffset, setGr
 
         // register the factory
         ref.current.getNodeFactories().registerFactory(new TSCustomNodeFactory(classes))
+        ref.current.getNodeFactories().registerFactory(new ValueNodeFactory(classes))
 
         // create a diagram model
         const model = new DiagramModel()
@@ -156,7 +160,10 @@ export const useDiagramEngine = (edit: boolean, gridOffset: PlcGridOffset, setGr
         link1.setSourcePort(node1.getPort('out')!)
         link1.setTargetPort(node2.getPort('in')!)
 
-        model.addAll(node1, node2, link1)
+        const node3 = new ValueNodeModel({ plcPath: '$(GM_BASE).Regulation.Temperature.Control.PV' })
+        node3.setPosition(300, 75)
+
+        model.addAll(node1, node2, link1, node3)
         
 
         // install the model into the engine

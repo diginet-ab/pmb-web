@@ -53,7 +53,7 @@ const messages = {
     en: { ...englishMessages, ...enLang, ...raTreeLanguageEnglish },
 } as { [key: string]: any };
 
-messages.sv.ra.page.empty = 'Inga användare ännu.'
+messages.sv.ra.page.empty = 'Inga poster ännu.'
 messages.sv.ra.page.invite = 'Vill du lägga till en?'
 
 const getLocale = () => {
@@ -157,7 +157,7 @@ const darkTheme = {
 
 export let _adsClients: AdsClients
 
-export const appVersion = { version: '0.25' }
+export const appVersion = { version: '0.27' }
 
 const App = () => {
     const [adsReady, setAdsReady] = useState(false)
@@ -219,15 +219,15 @@ const App = () => {
                     }
                     //await new Promise(resolve => setTimeout(resolve, 2000))
                     let dataProvider = {
-                        getList: (resource: any, params: any) => foo('GET_LIST', resource, params),
-                        getOne: (resource: any, params: any) => foo('GET_ONE', resource, params),
-                        getMany: (resource: any, params: any) => foo('GET_MANY', resource, params),
-                        getManyReference: (resource: any, params: any) => foo('GET_MANY_REFERENCE', resource, params),
-                        update: (resource: any, params: any) => foo('UPDATE', resource, params),
-                        updateMany: (resource: any, params: any) => foo('UPDATE_MANY', resource, params),
-                        create: (resource: any, params: any) => foo('CREATE', resource, params),
-                        delete: (resource: any, params: any) => foo('DELETE', resource, params),
-                        deleteMany: (resource: any, params: any) => foo('DELETE_MANY', resource, params),
+                        getList: async (resource: any, params: any) => await foo('GET_LIST', resource, params),
+                        getOne: async (resource: any, params: any) => await foo('GET_ONE', resource, params),
+                        getMany: async (resource: any, params: any) => await foo('GET_MANY', resource, params),
+                        getManyReference: async (resource: any, params: any) => await foo('GET_MANY_REFERENCE', resource, params),
+                        update: async (resource: any, params: any) => await foo('UPDATE', resource, params),
+                        updateMany: async (resource: any, params: any) => await foo('UPDATE_MANY', resource, params),
+                        create: async (resource: any, params: any) => await foo('CREATE', resource, params),
+                        delete: async (resource: any, params: any) => await foo('DELETE', resource, params),
+                        deleteMany: async (resource: any, params: any) => await foo('DELETE_MANY', resource, params),
                         getTree: async (resource: any) => await _adsClients.adsDataProvider.getTree(resource),
                         getRootNodes: async (resource: any) => await _adsClients.adsDataProvider.getRootNodes(resource),
                         getParentNode: async (resource: any, params: any) => await _adsClients.adsDataProvider.getParentNode(resource, params),
@@ -273,7 +273,7 @@ const App = () => {
         {(permissions: any) => [
             <Resource name="alarm" list={AlarmList} show={AlarmShow} edit={AlarmEdit} icon={AlarmIcon} />,
             <Resource name="parameter" list={ParameterList} icon={ParameterIcon} />,
-            <Resource name="io" list={ParameterList} show={ParameterShow} edit={ParameterEdit} icon={IoIcon} />,
+            /*<Resource name="io" list={ParameterList} show={ParameterShow} edit={ParameterEdit} icon={IoIcon} />,*/
             permissions >= 1 ? <Resource name="siteName" list={SiteNameList} show={SiteNameShow} edit={SiteNameEdit} icon={SiteNameIcon} /> : null,
             permissions < 1 ? <Resource name="siteName" /> : null,
             <Resource name="event" list={EventList} show={EventShow} icon={EventIcon} />,

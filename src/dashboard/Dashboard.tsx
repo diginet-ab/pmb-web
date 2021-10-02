@@ -180,10 +180,14 @@ export default () => {
                                 style={{ width: '15em', }}
                             />
                         </div>
-                        <PlcIcon iconTrue={<CheckCircleIcon />} iconFalse={<CancelOnIcon />} plcVar="$(GM_BASE).IO.DIn.Auto"
-                            label="AUTO" inverted={false} colorFalse="gray" colorTrue="green" style={{}} />
-                        <PlcIcon iconTrue={<CheckCircleIcon />} iconFalse={<CancelOnIcon />} plcVar="$(GM_BASE).IO.DIn.Hand"
-                            label="HAND" inverted={false} colorFalse="gray" colorTrue="orange" style={{}} />
+                        <Box display="flex" flexWrap="wrap" flexDirection="row" justifyContent="spaceEvenly">
+                            <PlcIcon iconTrue={<CheckCircleIcon />} iconFalse={<CancelOnIcon />} plcVar="$(GM_BASE).System.Operation.EN"
+                                label="Operation" inverted={false} colorFalse="gray" colorTrue="green" style={{}} />
+                            <PlcIcon iconTrue={<CheckCircleIcon />} iconFalse={<CancelOnIcon />} plcVar="$(GM_BASE).IO.DIn.Auto"
+                                label="AUTO" inverted={false} colorFalse="gray" colorTrue="green" style={{}} />
+                            <PlcIcon iconTrue={<CheckCircleIcon />} iconFalse={<CancelOnIcon />} plcVar="$(GM_BASE).IO.DIn.Hand"
+                                label="HAND" inverted={false} colorFalse="gray" colorTrue="orange" style={{}} />
+                        </Box>
                     </Box>
                 </CardContent>
             </Card>
@@ -265,29 +269,29 @@ export default () => {
                     <Box display="flex" flexWrap="wrap" flexDirection="row" justifyContent="spaceEvenly">
                         <Box display="flex" flexWrap="wrap" flexDirection="column" justifyContent="spaceEvenly">
                             <PlcIcon iconTrue={<CheckCircleIcon />} iconFalse={<CancelOnIcon />} plcVar="$(GM_BASE).IO.DOut.T_QM3"
-                                label="T.QM3" inverted={false} colorFalse="red" colorTrue="green" style={{}} />
+                                label="T.QM3" inverted={false} colorFalse="gray" colorTrue="green" style={{}} />
                             <PlcIcon iconTrue={<CheckCircleIcon />} iconFalse={<CancelOnIcon />} plcVar="$(GM_BASE).IO.DIn.T_QM3_Closed"
-                                label="T.QM3 Closed" inverted={false} colorFalse="red" colorTrue="green" style={{}} />
+                                label="T.QM3 Closed" inverted={false} colorFalse="gray" colorTrue="green" style={{}} />
                             <PlcIcon iconTrue={<CheckCircleIcon />} iconFalse={<CancelOnIcon />} plcVar="$(GM_BASE).IO.DIn.T_QM3_Open"
-                                label="T.QM3 Open" inverted={false} colorFalse="red" colorTrue="green" style={{}} />
+                                label="T.QM3 Open" inverted={false} colorFalse="gray" colorTrue="green" style={{}} />
                         </Box>
 
                         <Box display="flex" flexWrap="wrap" flexDirection="column" justifyContent="spaceEvenly">
                             <PlcIcon iconTrue={<CheckCircleIcon />} iconFalse={<CancelOnIcon />} plcVar="$(GM_BASE).IO.DOut.F_QM1"
-                                label="F.QM1" inverted={false} colorFalse="red" colorTrue="green" style={{}} />
+                                label="F.QM1" inverted={false} colorFalse="gray" colorTrue="green" style={{}} />
                             <PlcIcon iconTrue={<CheckCircleIcon />} iconFalse={<CancelOnIcon />} plcVar="$(GM_BASE).IO.DIn.F_QM1_Closed"
-                                label="F.QM1 Closed" inverted={false} colorFalse="red" colorTrue="green" style={{}} />
+                                label="F.QM1 Closed" inverted={false} colorFalse="gray" colorTrue="green" style={{}} />
                             <PlcIcon iconTrue={<CheckCircleIcon />} iconFalse={<CancelOnIcon />} plcVar="$(GM_BASE).IO.DIn.F_QM1_Open"
-                                label="F.QM1 Open" inverted={false} colorFalse="red" colorTrue="green" style={{}} />
+                                label="F.QM1 Open" inverted={false} colorFalse="gray" colorTrue="green" style={{}} />
                         </Box>
 
                         {fireDamperUsed && <Box display="flex" flexWrap="wrap" flexDirection="column" justifyContent="spaceEvenly">
                             <PlcIcon iconTrue={<CheckCircleIcon />} iconFalse={<CancelOnIcon />} plcVar="$(GM_BASE).IO.DOut.F_QM2"
-                                label="F.QM2" inverted={false} colorFalse="red" colorTrue="green" style={{}} />
+                                label="F.QM2" inverted={false} colorFalse="gray" colorTrue="green" style={{}} />
                             <PlcIcon iconTrue={<CheckCircleIcon />} iconFalse={<CancelOnIcon />} plcVar="$(GM_BASE).IO.DIn.F_QM2_Closed"
-                                label="F.QM2 Closed" inverted={false} colorFalse="red" colorTrue="green" style={{}} />
+                                label="F.QM2 Closed" inverted={false} colorFalse="gray" colorTrue="green" style={{}} />
                             <PlcIcon iconTrue={<CheckCircleIcon />} iconFalse={<CancelOnIcon />} plcVar="$(GM_BASE).IO.DIn.F_QM2_Open"
-                                label="F.QM2 Open" inverted={false} colorFalse="red" colorTrue="green" style={{}} />
+                                label="F.QM2 Open" inverted={false} colorFalse="gray" colorTrue="green" style={{}} />
                         </Box>}
 
                     </Box>
@@ -311,7 +315,7 @@ export default () => {
                 <CardHeader title={translate("custom.sensorStatus")} />
                 <CardContent>
                     <Box display="flex" flexWrap="wrap" flex-direction="row" justifyContent="spaceEvenly">
-                        { aInErrors.map((item, index) => <PlcIcon key={index.toString()} iconTrue={<CancelOnIcon />} iconFalse={<CheckCircleIcon />} plcVar={ `$(GM_BASE).IO.AIn.${ item.replace('.', '_') }_Error` } label={ item } inverted={true} colorFalse="green" colorTrue="red" />) }
+                        { aInErrors.map((item, index) => <PlcIcon key={index.toString()} iconTrue={<CheckCircleIcon />} iconFalse={<CancelOnIcon />} plcVar={ `$(GM_BASE).IO.AIn.${ item.replace('.', '_') }_Error` } label={ item } inverted={true} colorFalse="red" colorTrue="green" />) }
                     </Box>
                 </CardContent>
             </Card>
@@ -338,7 +342,7 @@ export default () => {
                 <CardHeader title={translate("custom.digitalInputs")} />
                 <CardContent>
                     <Box display="flex" flexWrap="wrap" flex-direction="row" justifyContent="spaceEvenly">
-                        { Object.entries(dInObject).map((item, index) => (typeof item[1] === 'boolean') ? <PlcIcon key={index.toString()} iconTrue={<CancelOnIcon />} iconFalse={<CheckCircleIcon />} plcVar={ `$(GM_BASE).IO.DIn.${ item[0] }` } label={ item[0] } inverted={true} colorFalse="green" colorTrue="red" /> : null) }
+                        { Object.entries(dInObject).map((item, index) => (typeof item[1] === 'boolean') ? <PlcIcon key={index.toString()} iconTrue={<CancelOnIcon />} iconFalse={<CheckCircleIcon />} plcVar={ `$(GM_BASE).IO.DIn.${ item[0] }` } label={ item[0] } inverted={true} colorFalse="green" colorTrue="gray" /> : null) }
                     </Box>
                 </CardContent>
             </Card>
@@ -347,7 +351,7 @@ export default () => {
                 <CardHeader title={translate("custom.digitalOutputs")} />
                 <CardContent>
                     <Box display="flex" flexWrap="wrap" flex-direction="row" justifyContent="spaceEvenly">
-                        { Object.entries(dOutObject).map((item, index) => (typeof item[1] === 'boolean') ? <PlcIcon key={index.toString()} iconTrue={<CancelOnIcon />} iconFalse={<CheckCircleIcon />} plcVar={ `$(GM_BASE).IO.DOut.${ item[0] }` } label={ item[0] } inverted={true} colorFalse="green" colorTrue="red" /> : null) }
+                        { Object.entries(dOutObject).map((item, index) => (typeof item[1] === 'boolean') ? <PlcIcon key={index.toString()} iconTrue={<CancelOnIcon />} iconFalse={<CheckCircleIcon />} plcVar={ `$(GM_BASE).IO.DOut.${ item[0] }` } label={ item[0] } inverted={true} colorFalse="green" colorTrue="gray" /> : null) }
                     </Box>
                 </CardContent>
             </Card>

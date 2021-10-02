@@ -2,7 +2,7 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
 import {
     NumberInput, SelectField, useRedirect, useNotify, ExportButton, BooleanInput, BooleanField, useLocale, FunctionField, ReferenceInput, SelectInput, Show, SimpleShowLayout, TextField, TextInput, Filter,
-    useTranslate, useDataProvider, useRefresh, usePermissions, AutocompleteInput, Pagination, useListContext,
+    useTranslate, useDataProvider, useRefresh, usePermissions, AutocompleteInput, Pagination, useListContext, List, SimpleList, Datagrid, ArrayField, ShowButton, EditButton
 } from 'react-admin';
 import { ListEditActions, ListShowActions } from "./CommonActions"
 import { Button, CardActions, Checkbox, makeStyles, Toolbar, Tooltip, Typography, useMediaQuery } from '@material-ui/core';
@@ -20,6 +20,7 @@ import { ChevronLeft, ChevronRight } from '@material-ui/icons';
 import { appInfo } from './App';
 //import { DataProviderContext } from 'react-admin';
 import { EditNode, SimpleForm, TreeWithDetails, TreeWithDetailsProps, useTreeController, NodeActions } from '@react-admin/ra-tree'
+import { ParameterList as ParameterGridList } from './parameterList'
 
 momentDurationFormatSetup(moment)
 
@@ -302,7 +303,7 @@ export const ParameterList = (props: JSX.IntrinsicAttributes) => {
         console.log('dataProvider2: ' + result)
     })()
     */
-    return <MyTreeWithDetails {...props} allowMultipleRoots titleField="title" defaultSelectedKeys={['5']} nodeActions={<MyActions />}
+    return <MyTreeWithDetails {...props} allowMultipleRoots titleField="title" showLine nodeActions={<MyActions />}
         edit={ParameterEdit}        
         title={getTitleText((props as any).resource, translate, isSmall)}
         />
@@ -389,7 +390,31 @@ export const ParameterEdit = (props: JSX.IntrinsicAttributes) => {
     const redirect = useRedirect()
     const notify = useNotify()
     const permissions = usePermissions()
-    return <EditNode /*aside={<Aside />}*/ undoable={false} actions={<ListShowActions />} title={<ParameterTitle />} {...props} onSuccess={(rec: any) => {
+    const dataProvider = useDataProvider()
+    const [item, setItem] = useState<any | undefined>()
+    const [loading, setLoading] = useState("")
+    const [error, setError] = useState<any | undefined>()
+    useEffect(() => {
+        (async () => {
+            try {
+                const data = await dataProvider.getOne((props as any).resource, { id: (props as any).id })
+                if (data && data.data) {
+                    data.data.props_id = (props as any).id
+                    setItem(data.data);
+                }
+                setLoading((props as any).id);
+            } catch (error) {
+                console.log(error)
+                setError(error);
+                //setLoading("");
+            }
+        })()
+    }, [dataProvider, (props as any).resource, (props as any).id])
+    if (!item || item.props_id !== (props as any).id) {
+        return <div/>
+    }
+    return <>
+        { item.id ? <EditNode /*aside={<Aside />}*/ undoable={false} actions={<ListShowActions />} title={<ParameterTitle />} {...props} onSuccess={(rec: any) => {
         notify(`Changes to parameter "${rec.data.path}" saved`)
         redirect(`/${(props as any).resource}`)
         refresh()
@@ -397,8 +422,7 @@ export const ParameterEdit = (props: JSX.IntrinsicAttributes) => {
         notify(`Changes to parameter "${rec.data.path}" FAILED`, 'warning')
         redirect(`/${(props as any).resource}`)
         refresh()
-    }} >
-        <SimpleForm>
+    }} ><SimpleForm>
             <TextField source="name" />
             <TextField source="path" />
             <TextField source="component" />
@@ -419,8 +443,34 @@ export const ParameterEdit = (props: JSX.IntrinsicAttributes) => {
                 { id: 2, name: 'SuperUser' },
                 { id: 3, name: 'NoOne' },
             ]} />}
-        </SimpleForm>
-    </EditNode>
+        </SimpleForm></EditNode> : <ParameterGridList {...props} filter={{ z: `${ (props as any).id }` }} />}
+    </>
+}
+
+const TestList = (props: any) => {
+    const translate = useTranslate()
+    const isSmall = useMediaQuery(theme => (theme as any).breakpoints.down('sm'))
+    return <List {...props} title={getTitleText((props as any).resource, translate, isSmall)} sort={{ field: 'path', order: 'ASC' }} >
+    {isSmall ? (
+        <SimpleList
+            primaryText={(record: any) => record?.name}
+            secondaryText={(record: any) => record?.phone ? `Phone ${record.phone}` : ""}
+            tertiaryText={(record: any) => record?.email}
+        />
+    ) : (
+            <Datagrid rowClick="toggleSelection">
+                <TextField source="path" />
+                <CustomListValueField source="value" />
+                <TextField source="type" />
+                <ShowButton />
+                <ConditionalEditButton />
+            </Datagrid>
+        )}
+</List>
+}
+
+const ConditionalEditButton = (props: any) => {
+    return !props.record.required ? <EditButton {...props} /> : <span></span>
 }
 
 const CustomInput = (props: any) => {

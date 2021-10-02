@@ -119,9 +119,9 @@ const ComponentActions = (props: any) => {
                     saveAs(blob, `${systemName} - ${moment().format()}.json`)
                 } catch (e) {
                 }
-            }} startIcon={<UploadIcon />} >{translate('custom.uploadParameters')}</Button>
+            }} startIcon={<UploadIcon />} >{translate('custom.downloadparameters')}</Button>
             <Button variant="contained" component="label" style={{ backgroundColor: "red", margin: '5px' }} startIcon={<DownloadIcon />} >
-                {translate('custom.downloadparameters')}
+                {translate('custom.uploadParameters')}
                 <input ref={el => { refFile.current = el! }} type="file" hidden onChange={(evt: any) => {
                     const fileReader = new FileReader()
 
