@@ -162,7 +162,7 @@ export default () => {
                         <PlcTextField plcVar="$(GM_BASE).System.Operation.SystemName" label={translate("custom.systemName")} />
                         {/*}<PlcTextField plcVar="Globals.Components" label={translate("custom.components")} multiline />{*/}
                         <Box display="flex" flexWrap="wrap" flexDirection="column" justifyContent="flex-start" alignItems="flex-start" style={{ margin: '3px', border: 'solid 2px lightgray', borderRadius: '5px', padding: '5x 5px 5px 5px',  }} >
-                            <p style={{ fontSize: '75%', color: 'gray', margin: '3px', }} >Components</p>
+                            <p style={{ fontSize: '75%', color: 'gray', margin: '3px', }} >{translate("custom.components")}</p>
                             <Box display="flex" flexWrap="wrap" flexDirection="row" justifyContent="flex-start" alignItems="center" style={{ margin: '3px', padding: '5x 5px 5px 5px',  }} >
                                 { components ? components.split(',').map((item, index) => <Chip key={index.toString()} label={ item } style={{ margin: '1em' }} /> ) : null }
                             </Box>

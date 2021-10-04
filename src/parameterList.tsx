@@ -197,8 +197,8 @@ const getParameterListColumns = (locale: string, permissions: number) => {
         path: <FunctionField source="path" label='resources.parameter.fields.group' render={(record: any) => (record.path ? (record.path as string).substring(0, (record.path as string).lastIndexOf('.')): undefined)} />,
         name: <TextField source="name" />,
         value: <CustomListValueField source="value" />,
-        type: <TextField source="type" />,
         unit: <FunctionField source="unit" render={(record: any) => record.commentOptions?.unit ? record.commentOptions?.unit : record.type === 'TIME' ? 's' : ''} />,
+        type: <TextField source="type" />,
         siteName: <TextField source="siteName" />,
         comment: <FunctionField source="comment" render={(record: any) => transformLanguage(record.comment, locale)} />,
         component: <TextField source="component" />,
@@ -232,7 +232,7 @@ export const getTitleText = (resource: string, translate: (resource: string) => 
     return result
 }
 
-const ParameterPagination = (props: any) => <Pagination rowsPerPageOptions={[10, 25, 50, 100]} {...props} />
+const ParameterPagination = (props: any) => <Pagination rowsPerPageOptions={[10, 15, 25, 50, 100]} {...props} />
 
 const PostPagination = (props: any) => {
     const { page, perPage, total, setPage } = useListContext()
@@ -259,7 +259,7 @@ const PostPagination = (props: any) => {
     )
 }
 
-export const ParameterList = (props: JSX.IntrinsicAttributes) => {
+export const ParameterList = (props: JSX.IntrinsicAttributes & { filter: { z: string } }) => {
     const translate = useTranslate()
     const locale = useLocale()
     const { permissions } = usePermissions()
@@ -269,7 +269,7 @@ export const ParameterList = (props: JSX.IntrinsicAttributes) => {
     const columns = useSelectedColumns({
         preferences: 'parameter.list.columns',
         columns: getParameterListColumns(locale, permissions),
-        omit: ['setup, readPermission, writePermission'],
+        omit: ['path, component, siteName, setup, readPermission, writePermission'],
     });
     /*
     (async () => {
@@ -283,6 +283,7 @@ export const ParameterList = (props: JSX.IntrinsicAttributes) => {
     */
     return <List {...props} actions={<ParameterActions />}
         pagination={isSmall ? null : <ParameterPagination />}
+        perPage={15}
         title={getTitleText((props as any).resource, translate, isSmall)}
         filters={<ParameterFilter {...props} />}
         sort={{ field: 'path', order: 'ASC' }}
@@ -292,7 +293,7 @@ export const ParameterList = (props: JSX.IntrinsicAttributes) => {
                 <ParameterListSmall />
                 <PostPagination />
             </div>
-            : <EditableDatagrid editForm={<EditForm />} noDelete rowClick={'edit' /* rowClick */} defaultColumns={['name', 'path', 'siteName', 'type', 'value', 'comment']} >
+            : <EditableDatagrid editForm={<EditForm />} noDelete rowClick={'edit' /* rowClick */} defaultColumns={['name', 'value', 'unit', 'type', 'comment']} >
                 {columns}
             </EditableDatagrid>
         }

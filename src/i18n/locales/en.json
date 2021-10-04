@@ -1,5 +1,18 @@
 {
   "custom": {
+    "plcTree": {
+      "GM_BASE_NODE": "Green Master",
+      "GM_IO_NODE": "Inputs / Outputs",
+      "GM_IO": {
+        "AIn": "Analog inputs",
+        "AOut": "Analog outputs",
+        "DIn": "Digital inputs",
+        "DOut": "Digital outputs",
+        "ModbusRTU": "Modbus RTU"
+      },
+      "GM_OPT_STD_NODE": "ADS Standard",
+      "GM_XXL_NODE": "Green Master XXL"
+    },
     "title": "NIBE AirSite GreenMaster",
     "email_or_username": "Email or Username",
     "password": "Password",
@@ -194,5 +207,10 @@
   },
   "Show": "Show",
   "Hide": "Hide",
-  "Set Point Adjustment": "Set Point Adjustment"
+  "Set Point Adjustment": "Set Point Adjustment",
+  "ra-preferences": {
+    "action": {
+      "choose_columns": "Choose columns"
+    }
+  }
 }

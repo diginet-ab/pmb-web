@@ -1,6 +1,19 @@
 {
   "Network Error": "Nätverksfel",
   "custom": {
+    "plcTree": {
+      "GM_BASE_NODE": "Green Master",
+      "GM_IO_NODE": "Ingångar / Utgångar",
+      "GM_IO": {
+        "AIn": "Analoga ingångar",
+        "AOut": "Analoga utgångar",
+        "DIn": "Digitala ingångar",
+        "DOut": "Digitala utgångar",
+        "ModbusRTU": "Modbus RTU"
+      },
+      "GM_OPT_STD_NODE": "ADS Standard",
+      "GM_XXL_NODE": "Green Master XXL"
+    },
     "title": "NIBE AirSite GreenMaster",
     "email_or_username": "Email eller användarnamn",
     "password": "Lösenord",
@@ -237,5 +250,10 @@
   },
   "Show": "Visa",
   "Hide": "Dölj",
-  "Set Point Adjustment": "Börvärdesjustering"
+  "Set Point Adjustment": "Börvärdesjustering",
+  "ra-preferences": {
+    "action": {
+      "choose_columns": "Välj kolumner"
+    }
+  }
 }

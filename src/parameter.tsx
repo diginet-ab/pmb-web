@@ -268,7 +268,12 @@ const useStyles = makeStyles({
 
 const MyTreeWithDetails = (props: TreeWithDetailsProps) => {
     const classes = useStyles(props);
-    return <TreeWithDetails {...props} className={classes.root} />
+    const refresh = useRefresh()
+    const locale = useLocale()
+    useEffect(() => {
+        refresh()
+    }, [locale])
+    return <TreeWithDetails {...props} classes={classes} />
  }
 
 export const ParameterList = (props: JSX.IntrinsicAttributes) => {

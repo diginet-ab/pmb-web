@@ -195,16 +195,16 @@ const App = () => {
                         } catch (e) {
                             // log('Error', 'Error in dataprovider', { message: e.message })
                             console.log('DataProvider error: ', e)
-                            switch (e.message) {
+                            switch ((e as any).message) {
                                 case 'custom.tcAdsWebServiceTimeout':
-                                    e.status = 503
+                                    (e as any).status = 503
                                     break
                                 default:
-                                    e.status = 504
+                                    (e as any).status = 504
                             }
-                            let msg = e.message
-                            if (e.errorDetails)
-                                msg = e.errorDetails.message
+                            let msg = (e as any).message
+                            if ((e as any).errorDetails)
+                                msg = (e as any).errorDetails.message
                             throw (new Error(msg))
                         }
                         if (result.error) {
@@ -228,7 +228,22 @@ const App = () => {
                         create: async (resource: any, params: any) => await foo('CREATE', resource, params),
                         delete: async (resource: any, params: any) => await foo('DELETE', resource, params),
                         deleteMany: async (resource: any, params: any) => await foo('DELETE_MANY', resource, params),
-                        getTree: async (resource: any) => await _adsClients.adsDataProvider.getTree(resource),
+                        getTree: async (resource: any) => {
+                            const tree = await _adsClients.adsDataProvider.getTree(resource)
+                            type Item = { title: string, id: string, children: Item[]}
+                            const translateItem = (item: Item) => {
+                                let translated = i18nProvider.translate("custom.plcTree." + item.id + (item.children.length ? "_NODE" : ""))
+                                if (translated && translated.indexOf("custom.plcTree.") < 0)
+                                    item.title = translated
+                            }
+                            if (tree) {
+                                for (let item of tree.data) {
+                                    translateItem(item as unknown as Item)
+                                }
+                            }
+                            (tree as any).validUntil = new Date()
+                            return tree
+                        },
                         getRootNodes: async (resource: any) => await _adsClients.adsDataProvider.getRootNodes(resource),
                         getParentNode: async (resource: any, params: any) => await _adsClients.adsDataProvider.getParentNode(resource, params),
                         getChildNodes: async (resource: any, params: any) => await _adsClients.adsDataProvider.getChildNodes(resource, params),
@@ -246,7 +261,7 @@ const App = () => {
             })()
         } catch {
         }
-    }, [])
+    }, [translate])
     useEffect(() => {
         (async () => {
             if (translate && adsDataProvider && _adsClients) {
