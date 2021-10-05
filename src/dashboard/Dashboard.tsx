@@ -222,13 +222,17 @@ export default () => {
                     </Box>
                     <Box display="flex" flexWrap="wrap" flexDirection="row" justifyContent="spaceEvenly">
                         <PlcNumberField plcVar="$(GM_BASE).Regulation.SupplyAir.Control.SP" decimals={ supplyAirDecimals } label={translate("custom.supplySP")} template={ `{0} ${ unitSupplyAir }` } />
-                        <PlcNumberField plcVar="$(GM_BASE).Regulation.SupplyAir.Control.CSP" label={translate("custom.supplyCSP")} template={ '{0} °C' } />
+                        <PlcNumberField plcVar="$(GM_BASE).Regulation.SupplyAir.Control.CSP" decimals={supplyAirDecimals} label={translate("custom.supplyCSP")} template={ '{0} Pa' } />
                         <PlcNumberField plcVar="$(GM_BASE).Regulation.SupplyAir.Control.PV" decimals={ supplyAirDecimals } label={translate("custom.supplyPV")} template={ `{0} ${ unitSupplyAir }` } />
                     </Box>
                     <Box display="flex" flexWrap="wrap" flexDirection="row" justifyContent="spaceEvenly">
                         <PlcNumberField plcVar="$(GM_BASE).Regulation.ExtractAir.Control.SP" decimals={ extractAirDecimals } label={translate("custom.extractSP")} template={ `{0} ${ unitExtractAir }` } />
-                        <PlcNumberField plcVar="$(GM_BASE).Regulation.ExtractAir.Control.CSP" label={translate("custom.extractCSP")} template={ '{0} °C' } />
+                        <PlcNumberField plcVar="$(GM_BASE).Regulation.ExtractAir.Control.CSP" decimals={extractAirDecimals} label={translate("custom.extractCSP")} template={ '{0} Pa' } />
                         <PlcNumberField plcVar="$(GM_BASE).Regulation.ExtractAir.Control.PV" decimals={ extractAirDecimals } label={translate("custom.extractPV")} template={ `{0} ${ unitExtractAir }` } />
+                    </Box>
+                    <Box display="flex" flexWrap="wrap" flexDirection="row" justifyContent="spaceEvenly">
+                        <PlcTextField plcVar="$(GM_BASE).Regulation.CurrentTemperatureCompensationSource" label={translate("custom.regulationCompensationSource")} />
+                        <PlcNumberField plcVar="$(GM_BASE).Regulation.CompensationTemperature" label={translate("custom.compensationTemperature")} template={ '{0} °C' } />
                     </Box>
                 </CardContent>
             </Card>
@@ -248,6 +252,7 @@ export default () => {
                             label="C.GP1" inverted={false} colorFalse="gray" colorTrue="blue" style={{}} />
                         <PlcNumberField plcVar="$(GM_BASE).IO.AIn.T_BT1" decimals={1} onScale={(value: number) => value} label={translate("custom.supplyAirTemperature")} template={ '{0} °C' } />
                         <PlcNumberField plcVar="$(GM_BASE).IO.AIn.T_BF1" decimals={0} onScale={(value: number) => value} label={translate("custom.supplyAirFlow")} template={ '{0} l/s' } />
+                        <PlcNumberField plcVar="$(GM_IO).ModBusRTU.T_BF1" decimals={0} label={translate("custom.supplyAirPressure")} template={ '{0} Pa' } />
                     </Box>
                 </CardContent>
             </Card>
@@ -257,8 +262,9 @@ export default () => {
                 <CardContent>
                     <Box display="flex" flexWrap="wrap" flexDirection="row" justifyContent="spaceEvenly" alignItems="flex-start" >
                         <PlcNumberField plcVar="$(GM_BASE).IO.AIn.F_BT1" decimals={1} onScale={(value: number) => value} label={translate("custom.extractAirTemperature")} template={ '{0} °C' } />
-                        <PlcNumberField plcVar="$(GM_BASE).IO.AIn.F_BF1" decimals={0} onScale={(value: number) => value} label={translate("custom.extractAirFlow")} template={ '{0} l/s' } />
                         <PlcNumberField plcVar="$(GM_BASE).Regulation.ExtractAir.Control.CV" onScale={(value: number) => value * 100} label={translate("custom.fanSpeedPercent")} decimals={0} template={ '{0} %' } />
+                        <PlcNumberField plcVar="$(GM_BASE).IO.AIn.F_BF1" decimals={0} onScale={(value: number) => value} label={translate("custom.extractAirFlow")} template={ '{0} l/s' } />
+                        <PlcNumberField plcVar="$(GM_IO).ModBusRTU.F_BF1" decimals={0} label={translate("custom.extractAirPressure")} template={ '{0} Pa' } />
                     </Box>
                 </CardContent>
             </Card>
@@ -270,19 +276,11 @@ export default () => {
                         <Box display="flex" flexWrap="wrap" flexDirection="column" justifyContent="spaceEvenly">
                             <PlcIcon iconTrue={<CheckCircleIcon />} iconFalse={<CancelOnIcon />} plcVar="$(GM_BASE).IO.DOut.T_QM3"
                                 label="T.QM3" inverted={false} colorFalse="gray" colorTrue="green" style={{}} />
-                            <PlcIcon iconTrue={<CheckCircleIcon />} iconFalse={<CancelOnIcon />} plcVar="$(GM_BASE).IO.DIn.T_QM3_Closed"
-                                label="T.QM3 Closed" inverted={false} colorFalse="gray" colorTrue="green" style={{}} />
-                            <PlcIcon iconTrue={<CheckCircleIcon />} iconFalse={<CancelOnIcon />} plcVar="$(GM_BASE).IO.DIn.T_QM3_Open"
-                                label="T.QM3 Open" inverted={false} colorFalse="gray" colorTrue="green" style={{}} />
                         </Box>
 
                         <Box display="flex" flexWrap="wrap" flexDirection="column" justifyContent="spaceEvenly">
                             <PlcIcon iconTrue={<CheckCircleIcon />} iconFalse={<CancelOnIcon />} plcVar="$(GM_BASE).IO.DOut.F_QM1"
                                 label="F.QM1" inverted={false} colorFalse="gray" colorTrue="green" style={{}} />
-                            <PlcIcon iconTrue={<CheckCircleIcon />} iconFalse={<CancelOnIcon />} plcVar="$(GM_BASE).IO.DIn.F_QM1_Closed"
-                                label="F.QM1 Closed" inverted={false} colorFalse="gray" colorTrue="green" style={{}} />
-                            <PlcIcon iconTrue={<CheckCircleIcon />} iconFalse={<CancelOnIcon />} plcVar="$(GM_BASE).IO.DIn.F_QM1_Open"
-                                label="F.QM1 Open" inverted={false} colorFalse="gray" colorTrue="green" style={{}} />
                         </Box>
 
                         {fireDamperUsed && <Box display="flex" flexWrap="wrap" flexDirection="column" justifyContent="spaceEvenly">

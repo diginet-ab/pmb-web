@@ -126,9 +126,14 @@
     "supplyAirFlow": "Tilluftsflöde",
     "extractAirFlow": "Frånluftsflöde",
     "setPointAdjustment": "Börvärdesjustering",
-    "temperatureCSP": "Beräknad SP",
-    "supplyCSP": "Beräknad SP",
-    "extractCSP": "Beräknad SP"
+    "temperatureCSP": "Temperatur beräknad SP",
+    "supplyCSP": "Tilluft beräknad SP",
+    "extractCSP": "Frånluft beräknad SP",
+    "supplyAirPressure": "Diff-tryck",
+    "extractAirPressure": "Diff-tryck",
+    "regulationControlSource": "SP justeringskälla",
+    "regulationCompensationSource": "SP justeringskälla",
+    "compensationTemperature": "Justeringstemperatur"
   },
   "pos": {
     "search": "Sök",

@@ -125,9 +125,14 @@
     "supplyAirFlow": "Supply air flow",
     "extractAirFlow": "Extract air flow",
     "setPointAdjustment": "Set Point Adjustment",
-    "temperatureCSP": "Calculated SP",
-    "supplyCSP": "Calculated SP",
-    "extractCSP": "Calculated SP"
+    "temperatureCSP": "Temperature calculated SP",
+    "supplyCSP": "Supply air calculated SP",
+    "extractCSP": "Extract air calculated SP",
+    "supplyAirPressure": "Diff Pressure",
+    "extractAirPressure": "Diff pressure",
+    "regulationControlSource": "SP compensation source",
+    "regulationCompensationSource": "SP compensation source",
+    "compensationTemperature": "Compensation temperature"
   },
   "pos": {
     "search": "Search",

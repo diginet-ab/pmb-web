@@ -59,19 +59,19 @@ const EditSetPointAdjustment = (props: { plcPath: string }) => {
     const [open, setOpen] = useState(true)
     return <Collapse collapsed={true} label={translate("Set Point Adjustment")}><Card>
         <CardContent>
-            <Box display="flex" flexDirection="row" >
+            <Box display="flex" flexDirection="column" >
                 {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((value) =>
-                    <Box display="flex" flexDirection="column" >
+                    <Box display="flex" flexDirection="row" >
                         <PlcNumberEdit
-                            plcVar={props.plcPath + ".Y" + value}
-                            label={"Y" + value}
+                            plcVar={props.plcPath + ".X" + value}
+                            label={"X" + value}
                             decimals={1}
                             unit="°C"
                             step={0.1}
                             writeOnChange={true} />
                         <PlcNumberEdit
-                            plcVar={props.plcPath + ".X" + value}
-                            label={"X" + value}
+                            plcVar={props.plcPath + ".Y" + value}
+                            label={"Y" + value}
                             decimals={1}
                             unit="°C"
                             step={0.1}
