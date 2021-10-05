@@ -242,7 +242,7 @@ export default () => {
                 <CardContent>
                     <Box display="flex" flexWrap="wrap" flexDirection="row" justifyContent="spaceEvenly" alignItems="center" >
                         <PlcNumberField plcVar="$(GM_BASE).IO.AIn.T_BT2" decimals={1} onScale={(value: number) => value} label={translate("custom.outdoorAirTemperature")} template={ '{0} °C' } />
-                        <PlcNumberField plcVar="$(GM_BASE).Regulation.SupplyAir.Control.CV" onScale={(value: number) => value * 100} label={translate("custom.fanSpeedPercent")} decimals={0} template={ '{0} %' } />
+                        <PlcNumberField plcVar="$(GM_BASE).IO.AOut.T_GQ1" onScale={(value: number) => value * 100} label={translate("custom.fanSpeedPercent")} decimals={0} template={ '{0} %' } />
                         <PlcNumberField plcVar="$(GM_BASE).IO.AOut.F_QN1" onScale={(value: number) => value * 100} label={translate("custom.heatExchangerPercentOpen")} decimals={0} template={ '{0} %' } />
                         <PlcNumberField plcVar="$(GM_BASE).IO.AOut.H_QN1" onScale={(value: number) => value * 100} label={translate("custom.heatingValvepercentOpen")} decimals={0} template={ '{0} %' } />
                         <PlcIcon iconTrue={<CheckCircleIcon />} iconFalse={<CancelOnIcon />} plcVar="$(GM_BASE).IO.DOut.H_GP1"
@@ -262,7 +262,7 @@ export default () => {
                 <CardContent>
                     <Box display="flex" flexWrap="wrap" flexDirection="row" justifyContent="spaceEvenly" alignItems="flex-start" >
                         <PlcNumberField plcVar="$(GM_BASE).IO.AIn.F_BT1" decimals={1} onScale={(value: number) => value} label={translate("custom.extractAirTemperature")} template={ '{0} °C' } />
-                        <PlcNumberField plcVar="$(GM_BASE).Regulation.ExtractAir.Control.CV" onScale={(value: number) => value * 100} label={translate("custom.fanSpeedPercent")} decimals={0} template={ '{0} %' } />
+                        <PlcNumberField plcVar="$(GM_BASE).IO.AOut.F_GQ1" onScale={(value: number) => value * 100} label={translate("custom.fanSpeedPercent")} decimals={0} template={ '{0} %' } />
                         <PlcNumberField plcVar="$(GM_BASE).IO.AIn.F_BF1" decimals={0} onScale={(value: number) => value} label={translate("custom.extractAirFlow")} template={ '{0} l/s' } />
                         <PlcNumberField plcVar="$(GM_IO).ModBusRTU.F_BF1" decimals={0} label={translate("custom.extractAirPressure")} template={ '{0} Pa' } />
                     </Box>

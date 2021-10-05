@@ -305,6 +305,7 @@ const PlcControl = (props: { classes: any; translate?: any; }) => {
                         <p />
                         <p />
                         <Box display="flex" flexDirection="row" >
+                            {/*}
                             <Button size="small" color="secondary" variant="contained" style={{ marginRight: 10, color: "#b71c1c" }} onClick={async event => {
                                 await setPlcState(AdsState.Stop)
                                 await new Promise(r => setTimeout(r, 100))
@@ -318,6 +319,7 @@ const PlcControl = (props: { classes: any; translate?: any; }) => {
                                     Stop PLC
                                 </span>
                             </Button>
+                            {*/}
                             <Button size="small" color="primary" variant="contained" style={{ marginRight: 10 }} onClick={async event => {
                                 await setPlcState(AdsState.Run)
                                 await new Promise(r => setTimeout(r, 100))
