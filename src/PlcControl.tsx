@@ -389,6 +389,7 @@ export const PlcNumberField = (props: { plcVar: string, label: string, decimals?
 }
 
 export const PlcTextField = (props: { plcVar: string, label: string, multiline?: boolean }) => {
+    const classes = useButtonStyles()
     const [parameter] = useParameter(props.plcVar, ' ')
     return <div style={{ border: '2px solid lightgray', borderRadius: '5px', padding: '0 5px 0 5px', margin: '3px' }} >
         <Tooltip title={props.plcVar} >
@@ -396,6 +397,8 @@ export const PlcTextField = (props: { plcVar: string, label: string, multiline?:
                 multiline
                 rowsMax={10}
                 label={props.label}
+                className={classes.textField}
+                margin="normal"
                 value={parameter}
                 InputLabelProps={{ style: { fontSize: '110%' } }}
                 InputProps={{ disableUnderline: true, style: { fontSize: '110%' } }}
