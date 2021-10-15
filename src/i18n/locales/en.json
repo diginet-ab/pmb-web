@@ -11,7 +11,8 @@
         "ModbusRTU": "Modbus RTU"
       },
       "GM_OPT_STD_NODE": "ADS Standard",
-      "GM_XXL_NODE": "Green Master XXL"
+      "GM_XXL_NODE": "Green Master XXL",
+      "GM_SMOKE_CONTROL_NODE": "Smoke Control"
     },
     "title": "NIBE AirSite GreenMaster",
     "email_or_username": "Email or Username",

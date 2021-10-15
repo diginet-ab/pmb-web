@@ -43,6 +43,7 @@ import svLang from './i18n/locales/sv.json'
 import enLang from './i18n/locales/en.json'
 import { CheckPlcConnection, globalSession } from './PlcControl';
 import { reducer as tree, raTreeLanguageEnglish } from '@react-admin/ra-tree'
+import { usePermissions } from 'ra-core';
 
 declare const module: any;
 
@@ -163,6 +164,7 @@ const App = () => {
     const [adsReady, setAdsReady] = useState(false)
     const [adsDataProvider, setAdsDataProvider] = useState(null as any)
     const translate = useTranslate()
+    const currentPermissions = usePermissions()
     // log('Information', 'NIBE AirSite GreenMaster {version} web app starting', appVersion)
     useEffect(() => {
         try {
@@ -170,7 +172,7 @@ const App = () => {
                 let dev = process.env.NODE_ENV === 'development'
                 _adsClients = await getAdsConnections(dev ? AdsConnections.NodeServerConnection : AdsConnections.IpcConnection)
                 if (!_adsClients.error) {
-                    const foo = async (typ: any, resource: any, params: any) => {
+                    const foo = async (typ: any, resource: any, params: any, permissions?: any) => {
                         let result: any
                         let rejectVar = {
                             rejector: (e: Error): void => undefined,
@@ -219,15 +221,15 @@ const App = () => {
                     }
                     //await new Promise(resolve => setTimeout(resolve, 2000))
                     let dataProvider = {
-                        getList: async (resource: any, params: any) => await foo('GET_LIST', resource, params),
-                        getOne: async (resource: any, params: any) => await foo('GET_ONE', resource, params),
-                        getMany: async (resource: any, params: any) => await foo('GET_MANY', resource, params),
-                        getManyReference: async (resource: any, params: any) => await foo('GET_MANY_REFERENCE', resource, params),
-                        update: async (resource: any, params: any) => await foo('UPDATE', resource, params),
-                        updateMany: async (resource: any, params: any) => await foo('UPDATE_MANY', resource, params),
-                        create: async (resource: any, params: any) => await foo('CREATE', resource, params),
-                        delete: async (resource: any, params: any) => await foo('DELETE', resource, params),
-                        deleteMany: async (resource: any, params: any) => await foo('DELETE_MANY', resource, params),
+                        getList: async (resource: any, params: any) => await foo('GET_LIST', resource, params, currentPermissions),
+                        getOne: async (resource: any, params: any) => await foo('GET_ONE', resource, params, currentPermissions),
+                        getMany: async (resource: any, params: any) => await foo('GET_MANY', resource, params, currentPermissions),
+                        getManyReference: async (resource: any, params: any) => await foo('GET_MANY_REFERENCE', resource, params, currentPermissions),
+                        update: async (resource: any, params: any) => await foo('UPDATE', resource, params, currentPermissions),
+                        updateMany: async (resource: any, params: any) => await foo('UPDATE_MANY', resource, params, currentPermissions),
+                        create: async (resource: any, params: any) => await foo('CREATE', resource, params, currentPermissions),
+                        delete: async (resource: any, params: any) => await foo('DELETE', resource, params, currentPermissions),
+                        deleteMany: async (resource: any, params: any) => await foo('DELETE_MANY', resource, params, currentPermissions),
                         getTree: async (resource: any) => {
                             const tree = await _adsClients.adsDataProvider.getTree(resource)
                             type Item = { title: string, id: string, children: Item[]}
