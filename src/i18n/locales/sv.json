@@ -95,7 +95,7 @@
     "tcAdsWebServiceTimeout": "TcAdsWebService svarade ej i tid",
     "component": "Komponent",
     "components": "Komponenter",
-    "plcError": "PLC i ogiltigt tillstånd (RUN eller STOP krävs)",
+    "plcError": "PLC i ogiltigt tillstånd (RUN krävs)",
     "details": "Detaljer",
     "dampers": "Spjäll",
     "systemState": "Systemtillstånd",

@@ -94,7 +94,7 @@
     "tcAdsWebServiceTimeout": "TcAdsWebService timeout",
     "component": "Component",
     "components": "Components",
-    "plcError": "Invalid PLC state (RUN or STOP required)",
+    "plcError": "Invalid PLC state (RUN required)",
     "details": "Details",
     "dampers": "Dampers",
     "systemState": "System state",
