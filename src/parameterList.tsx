@@ -194,7 +194,7 @@ export const CustomValueField = (props: any) => {
 
 const getParameterListColumns = (locale: string, permissions: number) => {
     let columns = {
-        path: <FunctionField source="path" label='resources.parameter.fields.group' render={(record: any) => (record.path ? (record.path as string).substring(0, (record.path as string).lastIndexOf('.')): undefined)} />,
+        path: <FunctionField source="path" label='resources.parameter.fields.group' render={(record: any) => record.path} />,
         name: <TextField source="name" />,
         value: <CustomListValueField source="value" />,
         unit: <FunctionField source="unit" render={(record: any) => record.commentOptions?.unit ? record.commentOptions?.unit : record.type === 'TIME' ? 's' : ''} />,

@@ -133,7 +133,8 @@
     "extractAirPressure": "Diff pressure",
     "regulationControlSource": "SP compensation source",
     "regulationCompensationSource": "SP compensation source",
-    "compensationTemperature": "Compensation temperature"
+    "compensationTemperature": "Compensation temperature",
+    "efficiency": "Efficiency"
   },
   "pos": {
     "search": "Search",

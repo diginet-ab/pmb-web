@@ -134,7 +134,8 @@
     "extractAirPressure": "Diff-tryck",
     "regulationControlSource": "SP justeringskälla",
     "regulationCompensationSource": "SP justeringskälla",
-    "compensationTemperature": "Justeringstemperatur"
+    "compensationTemperature": "Justeringstemperatur",
+    "efficiency": "Verkningsgrad"
   },
   "pos": {
     "search": "Sök",

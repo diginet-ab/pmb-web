@@ -7,7 +7,7 @@
     "@babel/core": "^7.15.5",
     "@babel/runtime": "^7.15.4",
     "@decthings/ds-nodes": "0.0.5",
-    "@diginet/ads-web-client": "^1.0.93",
+    "@diginet/ads-web-client": "^1.0.99",
     "@emotion/core": "^10.1.1",
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",

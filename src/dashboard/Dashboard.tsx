@@ -244,6 +244,7 @@ export default () => {
                         <PlcNumberField plcVar="$(GM_BASE).IO.AIn.T_BT2" decimals={1} onScale={(value: number) => value} label={translate("custom.outdoorAirTemperature")} template={ '{0} °C' } />
                         <PlcNumberField plcVar="$(GM_BASE).IO.AOut.T_GQ1" onScale={(value: number) => value * 100} label={translate("custom.fanSpeedPercent")} decimals={0} template={ '{0} %' } />
                         <PlcNumberField plcVar="$(GM_BASE).IO.AOut.F_QN1" onScale={(value: number) => value * 100} label={translate("custom.heatExchangerPercentOpen")} decimals={0} template={ '{0} %' } />
+                        <PlcNumberField plcVar="$(GM_BASE).Regulation.Temperature.Efficiency" onScale={(value: number) => value * 100} label={translate("custom.efficiency")} decimals={0} template={ '{0} %' } />
                         <PlcNumberField plcVar="$(GM_BASE).IO.AOut.H_QN1" onScale={(value: number) => value * 100} label={translate("custom.heatingValvepercentOpen")} decimals={0} template={ '{0} %' } />
                         <PlcIcon iconTrue={<CheckCircleIcon />} iconFalse={<CancelOnIcon />} plcVar="$(GM_BASE).IO.DOut.H_GP1"
                             label="H.GP1" inverted={false} colorFalse="gray" colorTrue="orange" style={{}} />
