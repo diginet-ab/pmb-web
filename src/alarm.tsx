@@ -130,7 +130,7 @@ export const AlarmList = (props: any) => {
                 medium={
                     <Datagrid >
                         <DateField source="time" showTime locales={ locale }/>
-                        <TagsField  source="alarms" />
+                        <TagsField  source="alarms" alarm/>
                         <TagsField  source="status" />
                         <FunctionField source="json" label={translate('custom.details')} render={(record: any) => ( (record.json && record.json !== '') ? <ReactJson displayDataTypes={ false } displayObjectSize={ false } theme="bright:inverted" name={false} collapsed enableClipboard={false} src={ JSON.parse(record.json) } /> : <div/>) } />
                         <TextField source="notes" />
@@ -167,10 +167,10 @@ const getAlarmColor = (name: string) => {
     return result
 }
 
-const TagsField = ({ source, record }: any) => (
+const TagsField = ({ source, record, alarm }: any) => (
     record ? (record[source]?.length ?  <span> 
         { record[source].map((item: any) => (
-            <p style={{ color: getAlarmColor(item.name) }} key={item.name}><b>{item.name}</b></p>
+            <p style={{ color: getAlarmColor(item.name) }} key={item.name}><b>{ alarm ? "⚠️ " + item.name : item.name}</b></p>
         ))}
      </span> : <p><b>{ `No ${ source }` }</b></p>) : <span></span>
 )

@@ -175,7 +175,7 @@ export const CustomListValueField = (props: any) => {
     if (typeof props.record.value === 'boolean')
         result = <BooleanField {...props} />
     else
-        result = <FunctionField {...props} render={(record: any) => formatValue(record.value, record, true)} />
+        result = <FunctionField {...props} render={(record: any) => formatValue(record.value, record)} />
     return result
 }
 
@@ -447,8 +447,10 @@ const CustomInput = (props: any) => {
             min={props.record.commentOptions.min ? props.record.commentOptions.min : undefined}
             max={props.record.commentOptions.max ? props.record.commentOptions.max : undefined}
             step={props.record.commentOptions.step ? props.record.commentOptions.step : undefined}
-            format={(v: any) => formatValue(v, props.record, true)} parse={(item: string) => {
-                return item //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            format={(v: any) => {
+                return formatValue(v, props.record)} 
+            }
+            parse={(item: string) => {
                 let v = parseFloat(item)
                 if (props.record?.commentOptions) {
                     if (props.record.commentOptions.min !== undefined && v < props.record.commentOptions.min)
