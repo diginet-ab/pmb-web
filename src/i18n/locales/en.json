@@ -134,7 +134,10 @@
     "regulationControlSource": "SP compensation source",
     "regulationCompensationSource": "SP compensation source",
     "compensationTemperature": "Compensation temperature",
-    "efficiency": "Efficiency"
+    "efficiency": "Efficiency",
+    "WebPort": "WebPort",
+    "userInterfaceSettings": "User interface",
+    "settings": "Settings"
   },
   "pos": {
     "search": "Search",

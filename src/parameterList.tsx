@@ -18,6 +18,9 @@ import { SelectColumnsButton, useSelectedColumns, usePreferences } from '@react-
 import momentDurationFormatSetup from 'moment-duration-format'
 import { ChevronLeft, ChevronRight } from '@material-ui/icons';
 import { appInfo } from './App';
+import { getLocalStorageItem } from './configuration/Configuration';
+import { downloadCSV } from 'ra-core';
+import jsonExport from 'jsonexport/dist'
 //import { DataProviderContext } from 'react-admin';
 
 momentDurationFormatSetup(moment)
@@ -104,6 +107,31 @@ const ParameterActions = ({
     const dataProvider = useDataProvider()
     const refresh = useRefresh()
     const [checked, setChecked] = useState(false)
+    const myExporter = (data: any, ...rest: any[]) => {
+        console.log(data)
+        const newArr: any[] = []
+        data.map((item: any) => {
+            const newData: any = {}
+            let device = getLocalStorageItem("webPortDevice", 'OBJECT_LB01')
+            newData.name = device + "_" + item.path.split('.')[item.path.split('.').length - 1].toUpperCase() + '_' + item.name
+            newData.device = device
+            newData.address = item.fullPath
+            newData.datatype = item.type === 'BOOL' ? 'DIGITAL' : item.type
+            newData.rawmin = "0"
+            newData.rawmax = "0"
+            newData.engmin = "0"
+            newData.engmax = "0"
+            newData.unit = item.unit ? item.unit : ''
+            newData.format = ''
+            newData.description = item.comment
+            newData.alarmoptions = ''
+            newData.trendoptions = ''
+            newArr.push(newData)
+        })
+        jsonExport(newArr, { rowDelimiter: ';'}, (err: any, csv: any) => downloadCSV(csv, resource))
+        //return exporter(newArr, ...rest)
+        return undefined
+    }
     useEffect(() => {
         updateOnChange = checked
     }, [checked])
@@ -127,7 +155,7 @@ const ParameterActions = ({
             resource={resource}
             sort={currentSort}
             filter={filterValues}
-            exporter={exporter}
+            exporter={myExporter}
         />
         <InputFiles onChange={async (files: any) => {
             try {

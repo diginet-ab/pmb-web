@@ -158,7 +158,7 @@ const darkTheme = {
 
 export let _adsClients: AdsClients
 
-export const appVersion = { version: '0.28' }
+export const appVersion = { version: '0.29' }
 
 const App = () => {
     const [adsReady, setAdsReady] = useState(false)
@@ -295,7 +295,7 @@ const App = () => {
             permissions < 1 ? <Resource name="siteName" /> : null,
             <Resource name="event" list={EventList} show={EventShow} icon={EventIcon} />,
             permissions >= 2 ? <Resource name="user" list={UserList} show={UserShow} edit={UserEdit} create={UserCreate} icon={UserIcon} /> : null,
-            permissions >= 2 ? <Resource name="debugLog" list={DebugLogList} show={DebugLogShow} icon={DebugLogIcon} /> : null,
+            //permissions >= 2 ? <Resource name="debugLog" list={DebugLogList} show={DebugLogShow} icon={DebugLogIcon} /> : null,
             permissions >= 2 ? <Resource name="component" list={ComponentList} show={ComponentShow} edit={ComponentEdit} create={ComponentCreate} icon={ComponentIcon} /> : null,
             permissions < 2 ? <Resource name="component" /> : null,
             <Resource name="path1" />,

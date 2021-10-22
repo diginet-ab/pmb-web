@@ -11,7 +11,7 @@ import SetPointIcon from '@material-ui/icons/BrightnessAuto';
 import PlayIcon from '@material-ui/icons/PlayArrow';
 import StopIcon from '@material-ui/icons/Stop';
 import { Checkbox, Divider, Tooltip, Typography } from "@material-ui/core";
-import SettingsApplicationsIcon from "@material-ui/icons/Translate";
+import SettingsApplicationsIcon from "@material-ui/icons/Settings";
 import { useSystemState, usePlcState, AdsState, useAutoUpdate } from "../PlcControl"
 
 const translatedResourceName = (resource: any, translate: any): string =>
@@ -76,7 +76,7 @@ export const MyMenu: FC<MenuProps> = ({ hasDashboard }) => {
                 name="setup"
                 to="/setup"
                 exact
-                label={translate("custom.setup")}
+                label={translate("custom.settings")}
                 icon={
                     <SettingsApplicationsIcon />
                 }

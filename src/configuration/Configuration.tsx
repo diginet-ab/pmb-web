@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import { useTranslate, useLocale, useSetLocale, Title } from 'react-admin';
 import { makeStyles } from '@material-ui/core/styles';
 import { appInfo } from '../App';
+import { CardHeader, TextField } from '@material-ui/core';
 
 export const getLocalStorageItem = (key: string, def: string = "") => localStorage.getItem(key) ? localStorage.getItem(key)! : def
 export const setLocalStorageItem = (key: string, value: string) => localStorage.setItem(key, value)
@@ -18,6 +19,7 @@ const useStyles = makeStyles({
 
 const Configuration = () => {
     const [allUserMessages] = useState(getLocalStorageItemBoolean("allUserMessages", true))
+    const [device, setDevice] = useState(getLocalStorageItem("webPortDevice", 'OBJECT_LB01'))
     useEffect(() => {
         setLocalStorageItemBoolean("allUserMessages", allUserMessages)
     }, [allUserMessages])
@@ -29,9 +31,15 @@ const Configuration = () => {
         localStorage.setItem("language", lang)
     }
     const classes = useStyles();
+
+    const deviceChange = (e: any) => {
+        setDevice(e.target.value)
+        setLocalStorageItem('webPortDevice', e.target.value)
+    }
     return (
+        <>
         <Card>
-            <Title title={translate('custom.title') + ' ' + appInfo.hostName + " / " + translate('pos.menu.setup')} />
+            <CardHeader title={translate("custom.userInterfaceSettings")} />
             {/*}
             <CardContent>
                 <div className={classes.label}>
@@ -75,6 +83,15 @@ const Configuration = () => {
                 </Button>
             </CardContent>
         </Card>
+        <p></p>
+        <Card>
+            
+            <CardContent>
+                <CardHeader title={translate("custom.WebPort")} />
+                <TextField value={device} onChange={deviceChange} />
+            </CardContent>
+        </Card>
+        </>
     );
 };
 

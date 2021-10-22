@@ -53,7 +53,7 @@ export const EventList = (props: any) => {
                     <TextField source="kind" />
                     <FunctionField source="message" label="resources.event.fields.message" render={(record: any) => buildEventMessage(record) } />
                     <FunctionField source="json" label="Data" render={(record: any) => ( (record.json && record.json !== '') ? <ReactJson displayDataTypes={ false } displayObjectSize={ false } theme={ isDark ? "monokai" : "bright:inverted" }  name={false} collapsed enableClipboard={false} src={ JSON.parse(record.json) } /> : <div/>) } />
-                    <TextField source="template" label="resources.event.fields.template"/>
+                    {/*}<TextField source="template" label="resources.event.fields.template"/>{*/}
                     <ShowButton />
                 </Datagrid>
             }

@@ -135,7 +135,10 @@
     "regulationControlSource": "SP justeringskälla",
     "regulationCompensationSource": "SP justeringskälla",
     "compensationTemperature": "Justeringstemperatur",
-    "efficiency": "Verkningsgrad"
+    "efficiency": "Verkningsgrad",
+    "WebPort": "WebPort",
+    "userInterfaceSettings": "Användargränssnitt",
+    "settings": "Inställningar"
   },
   "pos": {
     "search": "Sök",
