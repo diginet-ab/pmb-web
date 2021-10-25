@@ -150,7 +150,7 @@ export const useDiagramEngine = (edit: boolean, gridOffset: PlcGridOffset, setGr
         //####################################################
         // now create two nodes of each type, and connect them
         
-        const node1 = new TSCustomNodeModel({ plcPath: '$(GM_BASE).IO.DOut.T_QM3', color: 'rgb(192,255,0)' })
+        const node1 = new TSCustomNodeModel({ plcPath: '$(GM_BASE).IO.DOut.T_QM2', color: 'rgb(192,255,0)' })
         node1.setPosition(50, 50)
 
         const node2 = new TSCustomNodeModel({ plcPath: '$(GM_BASE).IO.DOut.F_QM1', color: 'rgb(0,192,255)' })

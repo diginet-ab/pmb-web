@@ -220,7 +220,7 @@ export const PlcDiagramEditor = (props: { height: number }) => {
                         color="primary"
                         onClick={() => {
                             const node1 = new TSCustomNodeModel({
-                                plcPath: '$(GM_BASE).IO.DOut.T_QM3',
+                                plcPath: '$(GM_BASE).IO.DOut.T_QM2',
                                 color: "rgb(192,255,255)",
                             });
                             node1.setPosition(150, 150);

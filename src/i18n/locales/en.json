@@ -137,7 +137,11 @@
     "efficiency": "Efficiency",
     "WebPort": "WebPort",
     "userInterfaceSettings": "User interface",
-    "settings": "Settings"
+    "settings": "Settings",
+    "systemSpecificFanPower": "System SFP",
+    "systemEfficiency": "System efficiency",
+    "supplyAirPower": "Power",
+    "extractAirPower": "Power"
   },
   "pos": {
     "search": "Search",

@@ -138,7 +138,11 @@
     "efficiency": "Verkningsgrad",
     "WebPort": "WebPort",
     "userInterfaceSettings": "Användargränssnitt",
-    "settings": "Inställningar"
+    "settings": "Inställningar",
+    "systemSpecificFanPower": "Systemets SFP",
+    "systemEfficiency": "Systemets effektivitet",
+    "supplyAirPower": "Effekt",
+    "extractAirPower": "Effekt"
   },
   "pos": {
     "search": "Sök",

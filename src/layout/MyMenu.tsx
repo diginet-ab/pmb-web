@@ -35,7 +35,7 @@ export const MyMenu: FC<MenuProps> = ({ hasDashboard }) => {
 
     return (
         <MultiLevelMenu variant="categories">
-            {hasDashboard && (
+            {true && (
                 <MenuItemCategory
                     name="dashboard"
                     to="/"
