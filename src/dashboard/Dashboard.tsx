@@ -236,8 +236,8 @@ export default () => {
                         <PlcNumberField plcVar="$(GM_BASE).Regulation.CompensationTemperature" label={translate("custom.compensationTemperature")} template={'{0} °C'} />
                     </Box>
                     <Box display="flex" flexWrap="wrap" flexDirection="row" justifyContent="spaceEvenly">
-                        <PlcNumberField plcVar="$(GM_BASE).Regulation.SystemSpecificFanPower" decimals={3} label={translate("custom.systemSpecificFanPower")} template={'{0} kW/m³s'} />
-                        <PlcNumberField plcVar="$(GM_BASE).Regulation.SystemEfficiency" decimals={0} onScale={ value => value * 100} label={translate("custom.systemEfficiency")} template={'{0} %'} />
+                        <PlcNumberField plcVar="$(GM_BASE).Regulation.SystemSpecificFanPower" decimals={3} label={translate("custom.systemSpecificFanPower")} template={'{0} kW/(m³s)'} />
+                        {/*}<PlcNumberField plcVar="$(GM_BASE).Regulation.SystemEfficiency" decimals={0} onScale={ value => value * 100} label={translate("custom.systemEfficiency")} template={'{0} %'} />{*/}
                     </Box>
                 </CardContent>
             </Card>
@@ -259,7 +259,8 @@ export default () => {
                         <PlcNumberField plcVar="$(GM_BASE).IO.AIn.T_BT1" decimals={1} onScale={(value: number) => value} label={translate("custom.supplyAirTemperature")} template={'{0} °C'} />
                         <PlcNumberField plcVar="$(GM_BASE).IO.AIn.T_BF1" decimals={0} onScale={(value: number) => value} label={translate("custom.supplyAirFlow")} template={'{0} l/s'} />
                         <PlcNumberField plcVar="$(GM_IO).ModBusRTU.T_BF1" decimals={0} label={translate("custom.supplyAirPressure")} template={'{0} Pa'} />
-                        <PlcNumberField plcVar="$(GM_BASE).Regulation.SupplyAir.Power" decimals={0} label={translate("custom.supplyAirPower")} template={'{0} W'} />
+                        <PlcNumberField plcVar="$(GM_BASE).Regulation.SupplyAir.Power" decimals={3} onScale={(value: number) => value / 1000 } label={translate("custom.supplyAirPower")} template={'{0} kW'} />
+                        <PlcNumberField plcVar="$(GM_BASE).Regulation.SupplyAir.KFactor" decimals={1} label={translate("custom.kFactor")} template={'{0} (l/s)'} />
                     </Box>
                 </CardContent>
             </Card>
@@ -272,7 +273,8 @@ export default () => {
                         <PlcNumberField plcVar="$(GM_BASE).IO.AOut.F_GQ1" onScale={(value: number) => value * 100} label={translate("custom.fanSpeedPercent")} decimals={0} template={'{0} %'} />
                         <PlcNumberField plcVar="$(GM_BASE).IO.AIn.F_BF1" decimals={0} onScale={(value: number) => value} label={translate("custom.extractAirFlow")} template={'{0} l/s'} />
                         <PlcNumberField plcVar="$(GM_IO).ModBusRTU.F_BF1" decimals={0} label={translate("custom.extractAirPressure")} template={'{0} Pa'} />
-                        <PlcNumberField plcVar="$(GM_BASE).Regulation.ExtractAir.Power" decimals={0} label={translate("custom.extractAirPower")} template={'{0} W'} />
+                        <PlcNumberField plcVar="$(GM_BASE).Regulation.ExtractAir.Power" decimals={3} onScale={(value: number) => value / 1000} label={translate("custom.extractAirPower")} template={'{0} kW'} />
+                        <PlcNumberField plcVar="$(GM_BASE).Regulation.ExtractAir.KFactor" decimals={1} label={translate("custom.kFactor")} template={'{0} (l/s)'} />
                     </Box>
                 </CardContent>
             </Card>

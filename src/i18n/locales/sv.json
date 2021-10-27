@@ -13,7 +13,9 @@
       },
       "GM_OPT_STD_NODE": "ADS Standard",
       "GM_XXL_NODE": "Green Master XXL",
-      "GM_SMOKE_CONTROL_NODE": "Smoke Control"
+      "GM_SMOKE_CONTROL_NODE": "Smoke Control",
+      "EXTRA_ALARMS_NODE": "Extra larmingångar",
+      "SMOKE_CONTROL_ADS_NODE": "ADS Smoke Control"
     },
     "title": "NIBE AirSite GreenMaster",
     "email_or_username": "Email eller användarnamn",
@@ -54,7 +56,7 @@
     "fanSpeedPercent": "Fläkthastighet (%)",
     "pressurePascal": "Tryck (pascal)",
     "pressureSetPointPascal": "Tryck SP (pascal)",
-    "outdoorAirTemperature": "Utomhustemperatur",
+    "outdoorAirTemperature": "Utomhustemp",
     "heatExchangerPercentOpen": "VVX (% öppen)",
     "supplyAirTemperature": "Tilluftstemperatur",
     "heatingValvepercentOpen": "Värmeventil (%)",
@@ -139,10 +141,11 @@
     "WebPort": "WebPort",
     "userInterfaceSettings": "Användargränssnitt",
     "settings": "Inställningar",
-    "systemSpecificFanPower": "Systemets SFP",
-    "systemEfficiency": "Systemets effektivitet",
+    "systemSpecificFanPower": "Systemets SFPv",
+    "systemEfficiency": "Fläktsystemets verkningsgrad",
     "supplyAirPower": "Effekt",
-    "extractAirPower": "Effekt"
+    "extractAirPower": "Effekt",
+    "kFactor": "K-faktor"
   },
   "pos": {
     "search": "Sök",

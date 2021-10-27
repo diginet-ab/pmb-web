@@ -12,7 +12,9 @@
       },
       "GM_OPT_STD_NODE": "ADS Standard",
       "GM_XXL_NODE": "Green Master XXL",
-      "GM_SMOKE_CONTROL_NODE": "Smoke Control"
+      "GM_SMOKE_CONTROL_NODE": "Smoke Control",
+      "EXTRA_ALARMS_NODE": "Extra alarms",
+      "SMOKE_CONTROL_ADS_NODE": "ADS Smoke Control"
     },
     "title": "NIBE AirSite GreenMaster",
     "email_or_username": "Email or Username",
@@ -53,7 +55,7 @@
     "fanSpeedPercent": "Fan speed (%)",
     "pressurePascal": "Pressure (pascal)",
     "pressureSetPointPascal": "Pressure SP (pascal)",
-    "outdoorAirTemperature": "Outdoor temperature",
+    "outdoorAirTemperature": "Outdoor temp",
     "heatExchangerPercentOpen": "Heat exchanger (%)",
     "supplyAirTemperature": "Supply air temp.",
     "heatingValvepercentOpen": "Heating valve (%)",
@@ -138,10 +140,11 @@
     "WebPort": "WebPort",
     "userInterfaceSettings": "User interface",
     "settings": "Settings",
-    "systemSpecificFanPower": "System SFP",
-    "systemEfficiency": "System efficiency",
+    "systemSpecificFanPower": "System SFPv",
+    "systemEfficiency": "Fan system efficiency",
     "supplyAirPower": "Power",
-    "extractAirPower": "Power"
+    "extractAirPower": "Power",
+    "kFactor": "K factor"
   },
   "pos": {
     "search": "Search",

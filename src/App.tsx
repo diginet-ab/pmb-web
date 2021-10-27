@@ -158,7 +158,7 @@ const darkTheme = {
 
 export let _adsClients: AdsClients
 
-export const appVersion = { version: '0.29' }
+export const appVersion = { version: '0.30' }
 
 const App = () => {
     const [adsReady, setAdsReady] = useState(false)
