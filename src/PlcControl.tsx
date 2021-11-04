@@ -380,8 +380,8 @@ export const PlcNumberField = (props: { plcVar: string, label: string, decimals?
                 label={props.label}
                 className={classes.textField}
                 value={onFormat(onScale(par).toFixed(decimals))}
-                margin="normal"
-                inputProps={{ style: { fontSize: '110%' } }}
+                //margin="normal"
+                //inputProps={{ style: { fontSize: '110%' } }}
                 InputProps={{ disableUnderline: true, style: { fontSize: '110%' } }}
                 InputLabelProps={{ style: { fontSize: '110%' } }} />
         </Tooltip>
@@ -395,10 +395,10 @@ export const PlcTextField = (props: { plcVar: string, label: string, multiline?:
         <Tooltip title={props.plcVar} >
             <TextField
                 multiline
-                rowsMax={10}
+                rowsMax={4}
                 label={props.label}
                 className={classes.textField}
-                margin="normal"
+                //margin="normal"
                 value={parameter}
                 InputLabelProps={{ style: { fontSize: '110%' } }}
                 InputProps={{ disableUnderline: true, style: { fontSize: '110%' } }}
@@ -440,7 +440,7 @@ export const PlcNumberEdit = (props: { plcVar: string, label: string, decimals?:
         if (props.writeOnChange) {
             interval = setIntervalAsync(async () => {
                 try {
-                    if (refEditParameter.current.editValue !== null && refEditParameter.current.editValue !== refEditParameter.current.value) {
+                    if (state.current.editing && refEditParameter.current.editValue !== null && refEditParameter.current.editValue !== refEditParameter.current.value) {
                         setParameter(refEditParameter.current.editValue)
                     }
                 } catch (e) {

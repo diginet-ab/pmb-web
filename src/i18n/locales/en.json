@@ -144,7 +144,15 @@
     "systemEfficiency": "Fan system efficiency",
     "supplyAirPower": "Power",
     "extractAirPower": "Power",
-    "kFactor": "K factor"
+    "kFactor": "K factor",
+    "linkToWebPort": "Go to WebPort",
+    "usedInComponentExport": "(used when exporting a component)",
+    "plcVersion": "PLC version",
+    "applyAbsoluteAdjustment": "Apply absolute adjustment",
+    "makeAbsoluteDescription": "Makes all adjustment curves equal to current SP and clears current SP.",
+    "askMakeAbsolute": "Use absolute setpoint adjustment?",
+    "no": "NO",
+    "yes": "YES"
   },
   "pos": {
     "search": "Search",
@@ -160,7 +168,9 @@
       "settings": "Settings",
       "status": "Status",
       "setup": "Program setup"
-    }
+    },
+    "deviceNameInWebPort": "Device name",
+    "externalLink": "Link to WebPort"
   },
   "resources": {
     "parameter": {
@@ -229,5 +239,8 @@
     "action": {
       "choose_columns": "Choose columns"
     }
+  },
+  "cusom": {
+    "openInNewTab": "Open in new tab"
   }
 }

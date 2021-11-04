@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import { useTranslate, useLocale, useSetLocale, Title } from 'react-admin';
 import { makeStyles } from '@material-ui/core/styles';
 import { appInfo } from '../App';
-import { CardHeader, TextField } from '@material-ui/core';
+import { Box, CardHeader, Checkbox, FormControlLabel, TextField } from '@material-ui/core';
 
 export const getLocalStorageItem = (key: string, def: string = "") => localStorage.getItem(key) ? localStorage.getItem(key)! : def
 export const setLocalStorageItem = (key: string, value: string) => localStorage.setItem(key, value)
@@ -20,6 +20,8 @@ const useStyles = makeStyles({
 const Configuration = () => {
     const [allUserMessages] = useState(getLocalStorageItemBoolean("allUserMessages", true))
     const [device, setDevice] = useState(getLocalStorageItem("webPortDevice", 'OBJECT_LB01'))
+    const [linkToWebPort, setLinkToWebPort] = useState(getLocalStorageItem("webPortLink", 'http://localhost:8090'))
+    const [openInNewTab, setOpenInNewTab] = useState(getLocalStorageItemBoolean("webPortLinkNewTab", false))
     useEffect(() => {
         setLocalStorageItemBoolean("allUserMessages", allUserMessages)
     }, [allUserMessages])
@@ -36,11 +38,19 @@ const Configuration = () => {
         setDevice(e.target.value)
         setLocalStorageItem('webPortDevice', e.target.value)
     }
+    const linkToWebPortChange = (e: any) => {
+        setLinkToWebPort(e.target.value)
+        setLocalStorageItem('webPortLink', e.target.value)
+    }
+    const openInNewTabChange = (e: any, checked: boolean) => {
+        setOpenInNewTab(checked)
+        setLocalStorageItemBoolean('webPortLinkNewTab', checked)
+    }
     return (
         <>
-        <Card>
-            <CardHeader title={translate("custom.userInterfaceSettings")} />
-            {/*}
+            <Card>
+                <CardHeader title={translate("custom.userInterfaceSettings")} />
+                {/*}
             <CardContent>
                 <div className={classes.label}>
                     {translate('pos.theme.name')}
@@ -63,34 +73,57 @@ const Configuration = () => {
                 </Button>
             </CardContent>
             {*/}
-            <CardContent>
-                <div className={classes.label}>{translate('pos.language')}</div>
-                <Button
-                    variant="contained"
-                    className={classes.button}
-                    color={locale === 'sv' ? 'primary' : 'default'}
-                    onClick={() => mySetLocale('sv')}
-                >
-                    sv
-                </Button>
-                <Button
-                    variant="contained"
-                    className={classes.button}
-                    color={locale === 'en' ? 'primary' : 'default'}
-                    onClick={() => mySetLocale('en')}
-                >
-                    en
-                </Button>
-            </CardContent>
-        </Card>
-        <p></p>
-        <Card>
-            
-            <CardContent>
+                <CardContent>
+                    <Box display="flex" flexDirection="column" alignItems="left" >
+                        <Box display="flex" flexDirection="row" alignItems="center" >
+                            <div className={classes.label}>{translate('pos.language')}</div>
+                            <Button
+                                variant="contained"
+                                className={classes.button}
+                                color={locale === 'sv' ? 'primary' : 'default'}
+                                onClick={() => mySetLocale('sv')}
+                            >
+                                sv
+                            </Button>
+                            <Button
+                                variant="contained"
+                                className={classes.button}
+                                color={locale === 'en' ? 'primary' : 'default'}
+                                onClick={() => mySetLocale('en')}
+                            >
+                                en
+                            </Button>
+                        </Box>
+                    </Box>
+                </CardContent>
+            </Card>
+            <p></p>
+            <Card>
                 <CardHeader title={translate("custom.WebPort")} />
-                <TextField value={device} onChange={deviceChange} />
-            </CardContent>
-        </Card>
+                <CardContent>
+                    <Box display="flex" flexDirection="column" alignItems="left" >
+                        <Box display="flex" flexDirection="row" alignItems="center" >
+                            <div className={classes.label} >{translate('pos.deviceNameInWebPort')}</div>
+                            <TextField value={device} onChange={deviceChange} />
+                            <div className={classes.label} style={{width: "350px"}}>{translate('custom.usedInComponentExport')}</div>
+                        </Box>
+                        <p></p>
+                        <Box display="flex" flexDirection="row" alignItems="center" >
+                            <div className={classes.label}>{translate('pos.externalLink')}</div>
+                            <TextField value={linkToWebPort} onChange={linkToWebPortChange} style={{width: "250px"}}/>
+                            <FormControlLabel
+                                control={
+                                    <Checkbox
+                                        checked={openInNewTab}
+                                        onChange={openInNewTabChange}
+                                    />
+                                }
+                                label={translate("cusom.openInNewTab")}
+                            />
+                        </Box>
+                    </Box>
+                </CardContent>
+            </Card>
         </>
     );
 };

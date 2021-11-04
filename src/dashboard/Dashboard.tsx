@@ -19,6 +19,7 @@ import humanizeDuration from 'humanize-duration'
 import { useLocale } from 'react-admin'
 import { useAirUnit } from '../SetPoints'
 import { useRefresh } from 'react-admin'
+import { getLocalStorageItem, getLocalStorageItemBoolean } from '../configuration/Configuration'
 //import ReactJson from "react-json-view"
 
 interface MyCheckBoxProps {
@@ -90,6 +91,10 @@ const useStyles = makeStyles({
 
 export default () => {
     let [aInErrors, setAInErrors] = useState([] as string[])
+    const [unitSupplyAirSP, supplyAirDecimalsSP] = useAirUnit('Supply', true)
+    const [unitExtractAirSP, extractAirDecimalsSP] = useAirUnit('Extract', true)
+    const [unitSupplyAir, supplyAirDecimals] = useAirUnit('Supply', false)
+    const [unitExtractAir, extractAirDecimals] = useAirUnit('Extract', false)
     const [dInObject,] = useParameterObject('$(GM_BASE).IO.DIn', {} as { [key: string]: boolean })
     const [dOutObject,] = useParameterObject('$(GM_BASE).IO.DOut', {} as { [key: string]: boolean })
     const [aInObject,] = useParameterObject('$(GM_BASE).IO.AIn', {} as { [key: string]: number })
@@ -110,8 +115,8 @@ export default () => {
     const [alarmList, setAlarmList] = useState([] as { path: string, state: boolean }[])
     const [showDiagram, setShowDiagram] = useState(false)
     const location = useLocale()
-    const [unitSupplyAir, supplyAirDecimals] = useAirUnit('Supply')
-    const [unitExtractAir, extractAirDecimals] = useAirUnit('Extract')
+    const [linkToWebPort] = useState(getLocalStorageItem("webPortLink", 'http://localhost:8090'))
+    const [openInNewTab] = useState(getLocalStorageItemBoolean("webPortLinkNewTab", false))
     useEffect(() => {
         refresh()
     }, [refresh])
@@ -121,7 +126,7 @@ export default () => {
             setAInErrors(items)
     }, [aInObject, setAInErrors])
     useEffect(() => {
-        setSystemUpTimeString(humanizeDuration(systemUpTime * 1000, { language: location, delimiter: ' ', units: ["d", "h", "s"], maxDecimalPoints: 2 }))
+        setSystemUpTimeString(humanizeDuration(systemUpTime * 1000, { language: location, delimiter: ' ', units: ["d", "h", "m", "s"], maxDecimalPoints: 2 }))
     }, [systemUpTime, setSystemUpTimeString, location])
     useEffect(() => {
         if (plcState !== AdsState.Invalid && plcState !== AdsState.Run && plcState !== AdsState.Stop)
@@ -150,17 +155,20 @@ export default () => {
                 <CardHeader title={translate("custom.operation")} />
                 <CardContent>
                     <Box display="flex" flexWrap="wrap" flexDirection="column" justifyContent="flex-start" alignItems="flex-start" >
-                        <div style={{ border: '2px solid lightgray', borderRadius: '5px', padding: '0 5px 0 5px', margin: '3px' }} >
-                            <TextField
-                                label="PLC"
-                                multiline
-                                rowsMax={4}
-                                value={plcStateString}
-                                InputLabelProps={{ style: { fontSize: '110%' } }}
-                                InputProps={{ disableUnderline: true, style: { fontSize: '110%' } }}
-                            />
-                        </div>
-                        <PlcTextField plcVar="$(GM_BASE).System.Operation.SystemName" label={translate("custom.systemName")} />
+                        <Box display="flex" flexWrap="wrap" flexDirection="row" justifyContent="flex-start" alignItems="flex-start" >
+                            <div style={{ border: '2px solid lightgray', borderRadius: '5px', padding: '0 5px 0 5px', margin: '3px' }} >
+                                <TextField
+                                    label="PLC"
+                                    multiline
+                                    rowsMax={4}
+                                    value={plcStateString}
+                                    InputLabelProps={{ style: { fontSize: '110%' } }}
+                                    InputProps={{ disableUnderline: true, style: { fontSize: '110%' } }}
+                                />
+                            </div>
+                            <PlcTextField plcVar="$(GM_BASE).System.Operation.SystemName" label={translate("custom.systemName")} />
+                            <PlcTextField plcVar="GlobalSettings.PlcVersion" label={translate("custom.plcVersion")} />
+                        </Box>
                         {/*}<PlcTextField plcVar="Globals.Components" label={translate("custom.components")} multiline />{*/}
                         <Box display="flex" flexWrap="wrap" flexDirection="column" justifyContent="flex-start" alignItems="flex-start" style={{ margin: '3px', border: 'solid 2px lightgray', borderRadius: '5px', padding: '5x 5px 5px 5px', }} >
                             <p style={{ fontSize: '75%', color: 'gray', margin: '3px', }} >{translate("custom.components")}</p>
@@ -189,6 +197,7 @@ export default () => {
                             <PlcIcon iconTrue={<CheckCircleIcon />} iconFalse={<CancelOnIcon />} plcVar="$(GM_BASE).IO.DIn.Hand"
                                 label="HAND" inverted={false} colorFalse="gray" colorTrue="orange" style={{}} />
                         </Box>
+                        <a href={linkToWebPort} target={openInNewTab ? "_blank" : "_self"}>{translate("custom.linkToWebPort")}</a>
                     </Box>
                 </CardContent>
             </Card>
@@ -222,13 +231,13 @@ export default () => {
                         <PlcNumberField plcVar="$(GM_BASE).Regulation.Temperature.Control.PV" label={translate("custom.temperaturePV")} template={'{0} °C'} />
                     </Box>
                     <Box display="flex" flexWrap="wrap" flexDirection="row" justifyContent="spaceEvenly">
-                        <PlcNumberField plcVar="$(GM_BASE).Regulation.SupplyAir.Control.SP" decimals={supplyAirDecimals} label={translate("custom.supplySP")} template={`{0} ${unitSupplyAir}`} />
-                        <PlcNumberField plcVar="$(GM_BASE).Regulation.SupplyAir.Control.CSP" decimals={supplyAirDecimals} label={translate("custom.supplyCSP")} template={'{0} Pa'} />
+                        <PlcNumberField plcVar="$(GM_BASE).Regulation.SupplyAir.Control.SP" decimals={supplyAirDecimalsSP} label={translate("custom.supplySP")} template={`{0} ${unitSupplyAirSP}`} />
+                        <PlcNumberField plcVar="$(GM_BASE).Regulation.SupplyAir.Control.CSP" decimals={supplyAirDecimalsSP} label={translate("custom.supplyCSP")} template={`{0} ${unitSupplyAirSP}`} />
                         <PlcNumberField plcVar="$(GM_BASE).Regulation.SupplyAir.Control.PV" decimals={supplyAirDecimals} label={translate("custom.supplyPV")} template={`{0} ${unitSupplyAir}`} />
                     </Box>
                     <Box display="flex" flexWrap="wrap" flexDirection="row" justifyContent="spaceEvenly">
-                        <PlcNumberField plcVar="$(GM_BASE).Regulation.ExtractAir.Control.SP" decimals={extractAirDecimals} label={translate("custom.extractSP")} template={`{0} ${unitExtractAir}`} />
-                        <PlcNumberField plcVar="$(GM_BASE).Regulation.ExtractAir.Control.CSP" decimals={extractAirDecimals} label={translate("custom.extractCSP")} template={'{0} Pa'} />
+                        <PlcNumberField plcVar="$(GM_BASE).Regulation.ExtractAir.Control.SP" decimals={extractAirDecimalsSP} label={translate("custom.extractSP")} template={`{0} ${unitExtractAirSP}`} />
+                        <PlcNumberField plcVar="$(GM_BASE).Regulation.ExtractAir.Control.CSP" decimals={extractAirDecimalsSP} label={translate("custom.extractCSP")} template={`{0} ${unitExtractAirSP}`} />
                         <PlcNumberField plcVar="$(GM_BASE).Regulation.ExtractAir.Control.PV" decimals={extractAirDecimals} label={translate("custom.extractPV")} template={`{0} ${unitExtractAir}`} />
                     </Box>
                     <Box display="flex" flexWrap="wrap" flexDirection="row" justifyContent="spaceEvenly">

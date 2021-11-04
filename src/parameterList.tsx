@@ -113,7 +113,10 @@ const ParameterActions = ({
         data.map((item: any) => {
             const newData: any = {}
             let device = getLocalStorageItem("webPortDevice", 'OBJECT_LB01')
-            newData.name = device + "_" + item.path.split('.')[item.path.split('.').length - 1].toUpperCase() + '_' + item.name
+            let path = item.path.split('.').slice(1).join('.')
+            if (path)
+                path += '_'
+            newData.name = device + "_" + path.toUpperCase() + item.name
             newData.device = device
             newData.address = item.fullPath
             newData.datatype = item.type === 'BOOL' ? 'DIGITAL' : item.type

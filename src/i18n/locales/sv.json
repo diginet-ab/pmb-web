@@ -145,7 +145,15 @@
     "systemEfficiency": "Fläktsystemets verkningsgrad",
     "supplyAirPower": "Effekt",
     "extractAirPower": "Effekt",
-    "kFactor": "K-faktor"
+    "kFactor": "K-faktor",
+    "linkToWebPort": "Gå till WebPort",
+    "usedInComponentExport": "(används vid export av komponent)",
+    "plcVersion": "PLC version",
+    "applyAbsoluteAdjustment": "Absolut justering",
+    "makeAbsoluteDescription": "Gör alla justeringskurvor absoluta och lika med nuvarande SP samt nollställer nuvarande SP.",
+    "askMakeAbsolute": "Använd absoluta justeringskurvor?",
+    "no": "NEJ",
+    "yes": "JA"
   },
   "pos": {
     "search": "Sök",
@@ -161,7 +169,9 @@
       "settings": "Inställningar",
       "status": "Status",
       "setup": "Programinställningar"
-    }
+    },
+    "deviceNameInWebPort": "Enhetsnamn",
+    "externalLink": "Länk till WebPort"
   },
   "resources": {
     "parameter": {
@@ -272,5 +282,8 @@
     "action": {
       "choose_columns": "Välj kolumner"
     }
+  },
+  "cusom": {
+    "openInNewTab": "Öppna i ny flik"
   }
 }

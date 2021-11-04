@@ -5,7 +5,7 @@ import SetPointIcon from '@material-ui/icons/BrightnessAuto';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import { useTranslate, Title, } from "react-admin";
-import { Card, CardContent, CardHeader, FormControl, InputLabel, MenuItem, Select, TextField, } from '@material-ui/core';
+import { Button, Card, CardContent, CardHeader, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles'
 import { PlcNumberEdit, useParameter } from './PlcControl';
 import { appInfo } from './App';
@@ -56,7 +56,7 @@ const Collapse = ({ label, collapsed, children }: any) => {
 
 const EditSetPointAdjustment = (props: { plcPath: string }) => {
     const translate = useTranslate()
-    const [open, setOpen] = useState(true)
+    const [unitAir, airDecimals] = useAirUnit((props.plcPath.indexOf('Temperature') >= 0) ? 'Temperature' : (props.plcPath.indexOf('Supply') >= 0) ? 'Supply' : 'Extract', true)
     return <Collapse collapsed={true} label={translate("Set Point Adjustment")}><Card>
         <CardContent>
             <Box display="flex" flexDirection="column" >
@@ -66,14 +66,14 @@ const EditSetPointAdjustment = (props: { plcPath: string }) => {
                             plcVar={props.plcPath + ".X" + value}
                             label={"X" + value}
                             decimals={1}
-                            unit="°C"
+                            unit='°C'
                             step={0.1}
                             writeOnChange={true} />
                         <PlcNumberEdit
                             plcVar={props.plcPath + ".Y" + value}
                             label={"Y" + value}
-                            decimals={1}
-                            unit="°C"
+                            decimals={airDecimals}
+                            unit={unitAir}
                             step={0.1}
                             writeOnChange={true} />
                     </Box>
@@ -84,20 +84,29 @@ const EditSetPointAdjustment = (props: { plcPath: string }) => {
     </Card></Collapse>
 }
 
-export const useAirUnit = (kind: 'Supply' | 'Extract') => {
-    const [controlModeAir] = useParameter(`$(GM_BASE).Regulation.${kind}Air.ControlMode`, '')
+export const useAirUnit = (kind: 'Supply' | 'Extract' | 'Temperature', isSetPoint: boolean) => {
+    const [controlModeAir] = useParameter((kind !== 'Temperature') ? `$(GM_BASE).Regulation.${kind}Air.ControlMode` : `$(GM_BASE).Regulation.SupplyAir.ControlMode`, '')
     const [unitAir, setUnitAir] = useState('')
     const [decimals, setDecimals] = useState(1)
     useEffect(() => {
-        if (controlModeAir === 'Pressure') {
-            setUnitAir('Pa')
-            setDecimals(0)
+        if (kind === 'Temperature') {
+            setUnitAir('°C')
+            setDecimals(1)
+        } else {
+            if (controlModeAir === 'Pressure') {
+                setUnitAir('Pa')
+                setDecimals(0)
+            }
+            if (controlModeAir === 'Flow' || controlModeAir === 'SlaveFlow') {
+                setUnitAir('l/s')
+                setDecimals(0)
+            }
+            if (controlModeAir === 'Const') {
+                setUnitAir(isSetPoint ? '%' : 'l/s')
+                setDecimals(0)
+            }
         }
-        if (controlModeAir === 'Flow' || controlModeAir === 'SlaveFlow')
-            setUnitAir('m³/h')
-        if (controlModeAir === 'Const')
-            setUnitAir('V')
-    }, [controlModeAir, setUnitAir])
+    }, [controlModeAir, setUnitAir, kind, isSetPoint])
     return [unitAir, decimals] as const
 }
 
@@ -108,8 +117,10 @@ export default (props: { classes: any; translate?: any; }) => {
     const refresh = useRefresh()
     const [controlModeSupplyAir, setControlModeSupplyAir] = useParameter('$(GM_BASE).Regulation.SupplyAir.ControlMode', '')
     const [controlModeExtractAir, setControlModeExtractAir] = useParameter('$(GM_BASE).Regulation.ExtractAir.ControlMode', '')
-    const [unitSupplyAir, supplyAirDecimals] = useAirUnit('Supply')
-    const [unitExtractAir, extractAirDecimals] = useAirUnit('Extract')
+    const [unitSupplyAir, supplyAirDecimals] = useAirUnit('Supply', true)
+    const [unitExtractAir, extractAirDecimals] = useAirUnit('Extract', true)
+    const [applyAbsoluteSetPointCurves, setApplyAbsoluteSetPointCurves] = useParameter('$(GM_BASE).Regulation.ApplyAbsoluteSetPointCurves', '')
+    const [open, setOpen] = React.useState(false);
 
     useEffect(() => {
         refresh()
@@ -210,6 +221,30 @@ export default (props: { classes: any; translate?: any; }) => {
                                         <MenuItem value={'Const'}>Constant</MenuItem>
                                     </Select>
                                 </FormControl>
+                                <Button onClick={() => setOpen(true)}>{translate('custom.applyAbsoluteAdjustment')}</Button>
+                                <Dialog
+                                    open={open}
+                                    onClose={() => setOpen(false)}>
+                                    <DialogTitle>
+                                        {translate("custom.askMakeAbsolute")}
+                                    </DialogTitle>
+                                    <DialogContent>
+                                        <DialogContentText>
+                                            {translate("custom.makeAbsoluteDescription")}
+                                        </DialogContentText>
+                                    </DialogContent>
+                                    <DialogActions>
+                                        <Button onClick={() => setOpen(false)}>{translate("custom.no")}</Button>
+                                        <Button onClick={async () => {
+                                            setApplyAbsoluteSetPointCurves(applyAbsoluteSetPointCurves + 1)
+                                            setOpen(false)
+                                            await new Promise(res => setTimeout(res, 2000))
+                                            refresh()
+                                        }} autoFocus>
+                                            {translate("custom.yes")}
+                                        </Button>
+                                    </DialogActions>
+                                </Dialog>
                             </Box>
                         </CardContent>
                     </Card>
