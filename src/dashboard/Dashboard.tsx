@@ -6,7 +6,7 @@ import TextField from '@material-ui/core/TextField'
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import { useTranslate, Title } from 'react-admin'
-import { PlcNumberField, PlcIcon, PlcTextField, usePlcState, AdsState, useParameter, useParameterObject, usePlcStateString } from '../PlcControl'
+import { PlcNumberField, PlcIcon, PlcTextField, usePlcState, AdsState, useParameter, useParameterObject, usePlcStateString, PlcCheckBox } from '../PlcControl'
 //import { setIntervalAsync } from 'set-interval-async/fixed'
 //import { clearIntervalAsync } from 'set-interval-async'
 import CancelOnIcon from '@material-ui/icons/Cancel'
@@ -291,18 +291,14 @@ export default () => {
             <Card className={classes.root} >
                 <CardHeader title={translate("custom.dampers")} />
                 <CardContent>
-                    <Box display="flex" flexWrap="wrap" flexDirection="row" justifyContent="spaceEvenly">
-                        <Box display="flex" flexWrap="wrap" flexDirection="column" justifyContent="spaceEvenly">
+                    <Box display="flex" flexWrap="wrap" flexDirection="column" justifyContent="spaceEvenly">
+                        <Box display="flex" flexWrap="wrap" flexDirection="row" justifyContent="spaceEvenly">
                             <PlcIcon iconTrue={<CheckCircleIcon />} iconFalse={<CancelOnIcon />} plcVar="$(GM_BASE).IO.DOut.T_QM2"
                                 label="T.QM2" inverted={false} colorFalse="gray" colorTrue="green" style={{}} />
-                        </Box>
-
-                        <Box display="flex" flexWrap="wrap" flexDirection="column" justifyContent="spaceEvenly">
                             <PlcIcon iconTrue={<CheckCircleIcon />} iconFalse={<CancelOnIcon />} plcVar="$(GM_BASE).IO.DOut.F_QM1"
                                 label="F.QM1" inverted={false} colorFalse="gray" colorTrue="green" style={{}} />
                         </Box>
-
-                        {fireDamperUsed && <Box display="flex" flexWrap="wrap" flexDirection="column" justifyContent="spaceEvenly">
+                        {fireDamperUsed && <Box display="flex" flexWrap="wrap" flexDirection="row" justifyContent="spaceEvenly">
                             <PlcIcon iconTrue={<CheckCircleIcon />} iconFalse={<CancelOnIcon />} plcVar="$(GM_BASE).IO.DOut.F_QM2"
                                 label="F.QM2" inverted={false} colorFalse="gray" colorTrue="green" style={{}} />
                             <PlcIcon iconTrue={<CheckCircleIcon />} iconFalse={<CancelOnIcon />} plcVar="$(GM_BASE).IO.DIn.F_QM2_Closed"
@@ -310,7 +306,7 @@ export default () => {
                             <PlcIcon iconTrue={<CheckCircleIcon />} iconFalse={<CancelOnIcon />} plcVar="$(GM_BASE).IO.DIn.F_QM2_Open"
                                 label="F.QM2 Open" inverted={false} colorFalse="gray" colorTrue="green" style={{}} />
                         </Box>}
-                        {(components.indexOf('GM_XXL') >= 0) && <Box display="flex" flexWrap="wrap" flexDirection="column" justifyContent="spaceEvenly">
+                        {(components.indexOf('GM_XXL') >= 0) && <Box display="flex" flexWrap="wrap" flexDirection="row" justifyContent="spaceEvenly">
                             {(defrostSections > 0) && <PlcIcon iconTrue={<CheckCircleIcon />} iconFalse={<CancelOnIcon />} plcVar="$(GM_BASE).IO.DOut.T_QM1_1"
                                 label="T.QM1.1" inverted={false} colorFalse="gray" colorTrue="green" style={{}} />}
                             {(defrostSections > 1) && <PlcIcon iconTrue={<CheckCircleIcon />} iconFalse={<CancelOnIcon />} plcVar="$(GM_BASE).IO.DOut.T_QM1_2"
@@ -327,6 +323,28 @@ export default () => {
                     </Box>
                 </CardContent>
             </Card>
+            <p></p>
+            <Card className={classes.root} >
+                <CardHeader title={translate("custom.defrost")} />
+                <CardContent>
+                    <Box display="flex" flexWrap="wrap" flexDirection="column" justifyContent="spaceEvenly">
+                        <Box display="flex" flexWrap="wrap" flexDirection="row" justifyContent="spaceEvenly">
+                            <PlcNumberField plcVar="$(GM_BASE).IO.AIn.T_BT2" decimals={1} onScale={(value: number) => value} label={translate("custom.outdoorAirTemperature")} template={'{0} °C'} />
+                            <PlcNumberField plcVar="$(GM_BASE).System.Defrost.DefrostTemperature" decimals={1} label={translate("custom.defrostTemperature")} template={'{0} °C'} />
+                            <PlcIcon iconTrue={<CheckCircleIcon />} iconFalse={<CancelOnIcon />} plcVar="$(GM_BASE).System.Defrost.EN"
+                                    label={translate("custom.enabled")} inverted={false} colorFalse="gray" colorTrue="green" style={{}} />
+                            <PlcIcon iconTrue={<CheckCircleIcon />} iconFalse={<CancelOnIcon />} plcVar="$(GM_BASE).System.Defrost.ENO"
+                                    label={translate("custom.active")} inverted={false} colorFalse="gray" colorTrue="green" style={{}} />
+                        </Box>
+                        <Box display="flex" flexWrap="wrap" flexDirection="row" justifyContent="spaceEvenly">
+                            <PlcNumberField plcVar="$(GM_BASE).IO.AIn.F_BP3" decimals={0} label={translate("custom.currentPressure")} template={'{0} Pa'} />
+                            <PlcNumberField plcVar="$(GM_BASE).System.Defrost.CurrentPressureLimit" decimals={0} label={translate("custom.currentPressureLimit")} template={'{0} Pa'} />
+                            <PlcNumberField plcVar="$(GM_BASE).System.Defrost.CurrentStage" decimals={0} label={translate("custom.currentStage")} template={'{0}'} />
+                            <PlcNumberField plcVar="$(GM_BASE).System.Defrost.CurrentSection" decimals={0} label={translate("custom.currentSection")} template={'{0}'} />
+                        </Box>
+                    </Box>
+                </CardContent>
+            </Card >
             <p></p>
             <Card className={classes.root} >
                 <CardHeader title={translate("custom.alarm")} />

@@ -28,7 +28,8 @@ momentDurationFormatSetup(moment)
 const ParameterFilter = (props: any) => {
     const translate = useTranslate()
     return <Filter {...props}>
-        <TextInput label={translate('pos.search')} source="q" alwaysOn />
+        <TextInput label={translate('pos.searchName')} source="q" alwaysOn />
+        <TextInput label={translate('pos.searchComment')} source="comment" alwaysOn />
         {/*}        
         <ReferenceInput source="path1Id" reference="path1" filter={{ source: props.resource }} sort={{ field: 'path', order: 'ASC' }} perPage={1000} label={translate("custom.grouping")} >
             <SelectInput optionText="id" />
@@ -46,6 +47,10 @@ const ParameterFilter = (props: any) => {
             { id: 'LTIME', name: 'LTIME' },
             { id: 'STRING', name: 'STRING' },
         ]} />
+        <SelectInput source="commentOptions.setup" choices={[
+            { id: true, name: 'YES' },
+            { id: false, name: 'NO' },
+        ]} />
         {/*}        
         <ReferenceInput source="component" reference="component" filter={{ EN: true }} label={translate("custom.component")} >
             <SelectInput optionText="name" />
@@ -61,7 +66,16 @@ const formatValue = (value: any, record: any, editValue: boolean = false) => {
             result = value ? '1' : '0'
         else if (record?.enumInfo)
             result = value
-        else if (typeof record?.value === 'number') {
+        else if (record?.commentOptions?.time) {
+            let duration = moment.duration(value)
+            result = (duration as any).format(record.commentOptions.time)
+        } else if (record?.type === 'xxxTIME') {
+            let duration = moment.duration(value)
+            result = duration.asSeconds().toString()
+        } else if (record?.type === 'xxxLTIME') {
+            let duration = moment.duration(value )
+            result = duration.asSeconds().toString()
+        } else if (typeof record?.value === 'number') {
             let v = value as number
             if (record?.commentOptions?.scale) {
                 let ranges = record.commentOptions.scale.split(' ')
@@ -75,12 +89,6 @@ const formatValue = (value: any, record: any, editValue: boolean = false) => {
             else
                 result = v.toFixed(0)
             result = removeTrailingZeros(result)
-        } else if (record?.commentOptions?.time) {
-            let duration = moment.duration(value)
-            result = (duration as any).format(record.commentOptions.time)
-        } else if (record?.type === 'TIME') {
-            let duration = moment.duration(record.value)
-            result = duration.asSeconds().toString()
         }
     }
     return result
@@ -131,7 +139,7 @@ const ParameterActions = ({
             newData.trendoptions = ''
             newArr.push(newData)
         })
-        jsonExport(newArr, { rowDelimiter: ';'}, (err: any, csv: any) => downloadCSV(csv, resource))
+        jsonExport(newArr, { rowDelimiter: ';' }, (err: any, csv: any) => downloadCSV(csv, resource))
         //return exporter(newArr, ...rest)
         return undefined
     }
@@ -228,14 +236,14 @@ const getParameterListColumns = (locale: string, permissions: number) => {
         path: <FunctionField source="path" label='resources.parameter.fields.group' render={(record: any) => record.path} />,
         name: <TextField source="name" />,
         value: <CustomListValueField source="value" />,
-        unit: <FunctionField source="unit" render={(record: any) => record.commentOptions?.unit ? record.commentOptions?.unit : record.type === 'TIME' ? 's' : ''} />,
+        unit: <FunctionField source="unit" render={(record: any) => record.commentOptions?.unit ? record.commentOptions?.unit : (record.type.indexOf('TIME') >= 0) ? 's' : ''} />,
         type: <TextField source="type" />,
         siteName: <TextField source="siteName" />,
         comment: <FunctionField source="comment" render={(record: any) => transformLanguage(record.comment, locale)} />,
         component: <TextField source="component" />,
     };
     const restrictedColumns = {
-        setup: <BooleanField source="setup" />,
+        setup: <BooleanField source="commentOptions.setup" />,
         readPermission: <SelectField source="readPermission" choices={[
             { id: 0, name: 'User' },
             { id: 1, name: 'AdminUser' },
@@ -479,10 +487,14 @@ const CustomInput = (props: any) => {
             max={props.record.commentOptions.max ? props.record.commentOptions.max : undefined}
             step={props.record.commentOptions.step ? props.record.commentOptions.step : undefined}
             format={(v: any) => {
-                return formatValue(v, props.record)} 
+                return formatValue(v, props.record)
+            }
             }
             parse={(item: string) => {
                 let v = parseFloat(item)
+                if (props.record?.type === 'xxxxLTIME') {
+                    v = v * 1000000000
+                }
                 if (props.record?.commentOptions) {
                     if (props.record.commentOptions.min !== undefined && v < props.record.commentOptions.min)
                         v = props.record.commentOptions.min
@@ -508,22 +520,22 @@ const EditForm: FC = props => {
     const [columns] = usePreferences('parameter.list.columns')
     return (
         <RowForm {...props}>
-            { columns.includes('path') && <TextField source="path" />}
-            { columns.includes('name') && <TextField source="name" />}
-            { columns.includes('value') && <CustomInput source="value" />}
-            { columns.includes('type') && <TextField source="type" />}
-            { columns.includes('unit') && <TextField source="unit" />}
-            { columns.includes('siteName') && <TextInput source="siteName" />}
-            { columns.includes('comment') && <FunctionField source="comment" label="Comment" render={(record: any) => transformLanguage(record.comment, locale)} />}
-            { columns.includes('component') && <TextField source="component" />}
-            { columns.includes('setup') && permissions >= 2 && <BooleanField source="setup" />}
-            { columns.includes('readPermission') && permissions >= 2 && <SelectField source="readPermission" choices={[
+            {columns.includes('path') && <TextField source="path" />}
+            {columns.includes('name') && <TextField source="name" />}
+            {columns.includes('value') && <CustomInput source="value" />}
+            {columns.includes('type') && <TextField source="type" />}
+            {columns.includes('unit') && <TextField source="unit" />}
+            {columns.includes('siteName') && <TextInput source="siteName" />}
+            {columns.includes('comment') && <FunctionField source="comment" label="Comment" render={(record: any) => transformLanguage(record.comment, locale)} />}
+            {columns.includes('component') && <TextField source="component" />}
+            {columns.includes('setup') && permissions >= 2 && <BooleanField source="setup" />}
+            {columns.includes('readPermission') && permissions >= 2 && <SelectField source="readPermission" choices={[
                 { id: 0, name: 'User' },
                 { id: 1, name: 'AdminUser' },
                 { id: 2, name: 'SuperUser' },
                 { id: 3, name: 'NoOne' },
             ]} />}
-            { columns.includes('writePermission') && permissions >= 2 && <SelectField source="writePermission" choices={[
+            {columns.includes('writePermission') && permissions >= 2 && <SelectField source="writePermission" choices={[
                 { id: 0, name: 'User' },
                 { id: 1, name: 'AdminUser' },
                 { id: 2, name: 'SuperUser' },

@@ -156,7 +156,15 @@
     "cancel": "Cancel",
     "dialogEditCurve": "Edit adjustment curve for",
     "setPointAndControlModes": "Set points and control modes",
-    "close": "Close"
+    "close": "Close",
+    "defrost": "Defrost",
+    "active": "Active",
+    "enabled": "Enabled",
+    "currentStage": "Current stage",
+    "currentSection": "Current section",
+    "defrostTemperature": "Temperature limit",
+    "currentPressureLimit": "Stage pressure limit",
+    "currentPressure": "Current pressure"
   },
   "pos": {
     "search": "Search",
@@ -174,7 +182,9 @@
       "setup": "Program setup"
     },
     "deviceNameInWebPort": "Device name",
-    "externalLink": "Link to WebPort"
+    "externalLink": "Link to WebPort",
+    "searchName": "Search name",
+    "searchComment": "Search description"
   },
   "resources": {
     "parameter": {
@@ -185,7 +195,8 @@
         "component": "Component",
         "type": "Type",
         "value": "Value",
-        "group": "Group"
+        "group": "Group",
+        "commentOptions.setup": "Setup"
       }
     },
     "io": {

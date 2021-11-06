@@ -1,5 +1,5 @@
 //import moment from 'moment';
-import React, { FC, useEffect, useRef, useState } from 'react';
+import React, { Fragment, FC, useEffect, useRef, useState } from 'react';
 import {
     NumberInput, SelectField, useRedirect, useNotify, ExportButton, BooleanInput, BooleanField, useLocale, FunctionField, ReferenceInput, SelectInput, Show, SimpleShowLayout, TextField, TextInput, Filter,
     useTranslate, useDataProvider, useRefresh, usePermissions, AutocompleteInput, Pagination, useListContext, List, SimpleList, Datagrid, ArrayField, ShowButton, EditButton
@@ -273,7 +273,7 @@ const MyTreeWithDetails = (props: TreeWithDetailsProps) => {
     useEffect(() => {
         refresh()
     }, [locale])
-    return <TreeWithDetails {...props} classes={classes} />
+    return <TreeWithDetails {...props} classes={classes} nodeActions={<Fragment />}/>
  }
 
 export const ParameterList = (props: JSX.IntrinsicAttributes) => {
