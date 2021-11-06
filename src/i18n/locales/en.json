@@ -152,7 +152,11 @@
     "makeAbsoluteDescription": "Makes all adjustment curves equal to current SP and clears current SP.",
     "askMakeAbsolute": "Use absolute setpoint adjustment?",
     "no": "NO",
-    "yes": "YES"
+    "yes": "YES",
+    "cancel": "Cancel",
+    "dialogEditCurve": "Edit adjustment curve for",
+    "setPointAndControlModes": "Set points and control modes",
+    "close": "Close"
   },
   "pos": {
     "search": "Search",

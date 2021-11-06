@@ -4,9 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import { Logo } from './Logo';
 import { useMediaQuery } from "@material-ui/core";
-import { ToggleThemeButton } from "@react-admin/ra-preferences";
 import MyLanguageSwitcher from './MyLanguageSwitcher'
-import { MyUserMenu } from "./MyUserMenu";
 import { AppBar } from "@react-admin/ra-enterprise";
 import { Fragment } from "react";
 

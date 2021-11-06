@@ -301,8 +301,6 @@ const PlcControl = (props: { classes: any; translate?: any; }) => {
                             />
                         </div>
 
-                        <TextField label="PLC" value={AdsState[plcState]} InputProps={{ disableUnderline: true }} />
-                        <p />
                         <p />
                         <Box display="flex" flexDirection="row" >
                             {/*}

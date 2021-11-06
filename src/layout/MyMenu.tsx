@@ -7,7 +7,7 @@ import DefaultIcon from '@material-ui/icons/ViewList';
 import { getResources, useTranslate } from 'react-admin';
 import { MenuItemCategory, MultiLevelMenu } from '@react-admin/ra-navigation';
 import PowerIcon from '@material-ui/icons/PowerSettingsNew';
-import SetPointIcon from '@material-ui/icons/BrightnessAuto';
+import SetPointIcon from '@material-ui/icons/PermDataSetting';
 import PlayIcon from '@material-ui/icons/PlayArrow';
 import StopIcon from '@material-ui/icons/Stop';
 import { Checkbox, Divider, Tooltip, Typography } from "@material-ui/core";

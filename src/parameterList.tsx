@@ -1,7 +1,7 @@
 //import moment from 'moment';
 import React, { FC, useEffect, useRef, useState } from 'react';
 import {
-    NumberInput, SelectField, useRedirect, useNotify, ExportButton, BooleanInput, BooleanField, useLocale, FunctionField, ReferenceInput, SelectInput, Show, SimpleShowLayout, List, TextField, SimpleForm, TextInput, Edit, Filter,
+    NumberInput, SelectField, useRedirect, useNotify, ExportButton, BooleanInput, BooleanField, useLocale, FunctionField, SelectInput, Show, SimpleShowLayout, List, TextField, SimpleForm, TextInput, Edit, Filter,
     useTranslate, useDataProvider, useRefresh, usePermissions, AutocompleteInput, Pagination, useListContext,
 } from 'react-admin';
 import { ListEditActions, ListShowActions } from "./CommonActions"
@@ -107,12 +107,12 @@ const ParameterActions = ({
     const dataProvider = useDataProvider()
     const refresh = useRefresh()
     const [checked, setChecked] = useState(false)
+    let device = getLocalStorageItem("webPortDevice", 'OBJECT_LB01')
     const myExporter = (data: any, ...rest: any[]) => {
         console.log(data)
         const newArr: any[] = []
         data.map((item: any) => {
             const newData: any = {}
-            let device = getLocalStorageItem("webPortDevice", 'OBJECT_LB01')
             let path = item.path.split('.').slice(1).join('.')
             if (path)
                 path += '_'
@@ -120,12 +120,12 @@ const ParameterActions = ({
             newData.device = device
             newData.address = item.fullPath
             newData.datatype = item.type === 'BOOL' ? 'DIGITAL' : item.type
-            newData.rawmin = "0"
-            newData.rawmax = "0"
-            newData.engmin = "0"
-            newData.engmax = "0"
-            newData.unit = item.unit ? item.unit : ''
-            newData.format = ''
+            newData.rawmin = item.commentOptions?.min ? item.commentOptions.min.toString() : "0"
+            newData.rawmax = item.commentOptions?.max ? item.commentOptions?.max.toString() : "0"
+            newData.engmin = item.commentOptions?.min ? item.commentOptions.min.toString() : "0"
+            newData.engmax = item.commentOptions?.max ? item.commentOptions?.max.toString() : "0"
+            newData.unit = item.commentOptions?.unit ? item.commentOptions.unit : ''
+            newData.format = item.commentOptions?.format ? item.commentOptions.format : ''
             newData.description = item.comment
             newData.alarmoptions = ''
             newData.trendoptions = ''

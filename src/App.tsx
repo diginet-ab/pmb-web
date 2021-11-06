@@ -2,20 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { Resource, resolveBrowserLocale, useTranslate, Title } from 'react-admin';
 import { Admin } from '@react-admin/ra-enterprise'
 import polyglotI18nProvider from 'ra-i18n-polyglot'
-import { ParameterList, ParameterShow, ParameterEdit } from './parameter';
+import { ParameterList } from './parameter';
 import { SiteNameList, SiteNameShow, SiteNameEdit } from './siteName';
 import { EventList, EventShow } from './event';
 import { AlarmList, AlarmShow, AlarmEdit } from './alarm';
 import { UserList, UserShow, UserEdit, UserCreate } from './user';
 import { ComponentList, ComponentShow, ComponentEdit, ComponentCreate } from './component';
-import { DebugLogList, DebugLogShow } from './debugLog';
-import ParameterIcon from '@material-ui/icons/Settings';
+import ParameterIcon from '@material-ui/icons/AccountTree';
 import SiteNameIcon from '@material-ui/icons/Label';
 import EventIcon from '@material-ui/icons/Event';
 import UserIcon from '@material-ui/icons/Group';
 import AlarmIcon from '@material-ui/icons/Whatshot';
-import IoIcon from '@material-ui/icons/SettingsInputComponent';
-import DebugLogIcon from '@material-ui/icons/ErrorOutline';
 import ComponentIcon from '@material-ui/icons/ViewCompact';
 import Dashboard from './dashboard/Dashboard';
 import authProvider from './authProvider';
@@ -158,7 +155,7 @@ const darkTheme = {
 
 export let _adsClients: AdsClients
 
-export const appVersion = { version: '1.0.32P1' }
+export const appVersion = { version: '1.0.32P2' }
 
 const App = () => {
     const [adsReady, setAdsReady] = useState(false)
@@ -263,7 +260,7 @@ const App = () => {
             })()
         } catch {
         }
-    }, [translate])
+    }, [currentPermissions, translate])
     useEffect(() => {
         (async () => {
             if (translate && adsDataProvider && _adsClients) {

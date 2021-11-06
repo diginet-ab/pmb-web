@@ -153,7 +153,11 @@
     "makeAbsoluteDescription": "Gör alla justeringskurvor absoluta och lika med nuvarande SP samt nollställer nuvarande SP.",
     "askMakeAbsolute": "Använd absoluta justeringskurvor?",
     "no": "NEJ",
-    "yes": "JA"
+    "yes": "JA",
+    "cancel": "Avbryt",
+    "dialogEditCurve": "Editera justeringskurva för",
+    "setPointAndControlModes": "Börvärden och reglermoder",
+    "close": "Stäng"
   },
   "pos": {
     "search": "Sök",
