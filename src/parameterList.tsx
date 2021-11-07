@@ -128,13 +128,26 @@ const ParameterActions = ({
             newData.device = device
             newData.address = item.fullPath
             newData.datatype = item.type === 'BOOL' ? 'DIGITAL' : item.type
-            newData.rawmin = item.commentOptions?.min ? item.commentOptions.min.toString() : "0"
-            newData.rawmax = item.commentOptions?.max ? item.commentOptions?.max.toString() : "0"
-            newData.engmin = item.commentOptions?.min ? item.commentOptions.min.toString() : "0"
-            newData.engmax = item.commentOptions?.max ? item.commentOptions?.max.toString() : "0"
+            if (item.commentOptions?.scale) {
+                let ranges = item.commentOptions.scale.split(' ')
+                if (ranges.length === 4) {
+                    newData.rawmin = ranges[0]
+                    newData.rawmax = ranges[1]
+                    newData.engmin = ranges[2]
+                    newData.engmax = ranges[3]
+                }
+            }
+            if (!newData.rawmin)
+                newData.rawmin = "0"
+            if (!newData.rawmax)
+                newData.rawmax = "0"
+            if (!newData.engmin)
+                newData.engmin = "0"
+            if (!newData.engmax)
+                newData.engmax = "0"
             newData.unit = item.commentOptions?.unit ? item.commentOptions.unit : ''
             newData.format = item.commentOptions?.format ? item.commentOptions.format : ''
-            newData.description = item.comment
+            newData.description = transformLanguage(item?.comment?.trim(), locale)
             newData.alarmoptions = ''
             newData.trendoptions = ''
             newArr.push(newData)
@@ -346,9 +359,9 @@ export const transformLanguage = (comment: string, locale?: string) => {
     if (result) {
         let langs = result.split('||||')
         if (locale === 'en')
-            result = langs[0]
+            result = langs[0]?.trim()
         if (langs.length > 1 && locale === 'sv')
-            result = langs[1]
+            result = langs[1]?.trim()
     }
     return result
 }

@@ -20,7 +20,7 @@ import { ChevronLeft, ChevronRight } from '@material-ui/icons';
 import { appInfo } from './App';
 //import { DataProviderContext } from 'react-admin';
 import { EditNode, SimpleForm, TreeWithDetails, TreeWithDetailsProps, useTreeController, NodeActions } from '@react-admin/ra-tree'
-import { ParameterList as ParameterGridList } from './parameterList'
+import { ParameterList as ParameterGridList, transformLanguage } from './parameterList'
 
 momentDurationFormatSetup(moment)
 
@@ -320,18 +320,6 @@ const MyActions = (props: any) => (
   )
 
 // const rowClick = (id: string, basePath: string, record: any) => 'edit' // record.write ? 'edit' : 'show'
-
-export const transformLanguage = (comment: string, locale?: string) => {
-    let result = comment === undefined ? "" : comment
-    if (result) {
-        let langs = result.split('||||')
-        if (locale === 'en')
-            result = langs[0]
-        if (langs.length > 1 && locale === 'sv')
-            result = langs[1]
-    }
-    return result
-}
 
 export const getUnit = (comment: string, locale?: string) => {
     return ''

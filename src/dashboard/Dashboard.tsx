@@ -340,7 +340,7 @@ export default () => {
                             <PlcNumberField plcVar="$(GM_BASE).IO.AIn.F_BP3" decimals={0} label={translate("custom.currentPressure")} template={'{0} Pa'} />
                             <PlcNumberField plcVar="$(GM_BASE).System.Defrost.CurrentPressureLimit" decimals={0} label={translate("custom.currentPressureLimit")} template={'{0} Pa'} />
                             <PlcNumberField plcVar="$(GM_BASE).System.Defrost.CurrentStage" decimals={0} label={translate("custom.currentStage")} template={'{0}'} />
-                            <PlcNumberField plcVar="$(GM_BASE).System.Defrost.CurrentSection" decimals={0} label={translate("custom.currentSection")} template={'{0}'} />
+                            <PlcTextField plcVar="$(GM_BASE).System.Defrost.CurrentSection" label={translate("custom.currentSection")} />
                         </Box>
                     </Box>
                 </CardContent>
