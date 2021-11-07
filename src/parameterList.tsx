@@ -146,7 +146,7 @@ const ParameterActions = ({
             if (!newData.engmax)
                 newData.engmax = "0"
             newData.unit = item.commentOptions?.unit ? item.commentOptions.unit : ''
-            newData.format = item.commentOptions?.format ? item.commentOptions.format : ''
+            newData.format = item.commentOptions?.format ? item.commentOptions.format : (item.commentOptions.unit === '%' ? '0' : '')
             newData.description = transformLanguage(item?.comment?.trim(), locale)
             newData.alarmoptions = ''
             newData.trendoptions = ''
