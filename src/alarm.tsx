@@ -29,7 +29,7 @@ import ResetAlarmIcon from '@material-ui/icons/Check'
 import moment from "moment"
 import { CardActions, Button, useMediaQuery } from "@material-ui/core"
 //import ResetAlarmsButton from "./ResetAlarmsButton"
-import { _adsClients } from "./App"
+import { _adsClients } from "./AdsDataProvider"
 import { getTitleText } from "./parameter"
 import ReactJson from "react-json-view"
 import { useLocale } from "react-admin"

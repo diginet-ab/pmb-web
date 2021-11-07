@@ -9,7 +9,8 @@ import { useTranslate, useVersion, Title, useRefresh, usePermissions, useNotify 
 import { CheckBoxStyleColor } from './dashboard/Dashboard'
 import { Card, CardContent, CardHeader, InputAdornment, TextField, Tooltip } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles'
-import { appInfo, appVersion, _adsClients } from './App';
+import { appInfo, appVersion } from './App';
+import { _adsClients } from './AdsDataProvider';
 import { useConfirm } from "material-ui-confirm"
 import format from 'string-format'
 import { clearIntervalAsync, setIntervalAsync, SetIntervalAsyncTimer } from 'set-interval-async/dynamic';

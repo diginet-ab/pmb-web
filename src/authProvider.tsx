@@ -1,5 +1,5 @@
 import { AUTH_LOGIN, AUTH_LOGOUT, AUTH_ERROR, AUTH_CHECK, AUTH_GET_PERMISSIONS } from 'react-admin';
-import { _adsClients } from './App';
+import { _adsClients } from './AdsDataProvider';
 import { globalSession } from './PlcControl';
 
 export default async (type: any, params: { username: string, password: string, status: number }) => {

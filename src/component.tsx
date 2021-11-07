@@ -4,7 +4,7 @@ import {
     ArrayInput, SimpleFormIterator, ArrayField, BooleanInput, ShowButton, Show, SimpleShowLayout, List, Datagrid, TextField, EditButton, SimpleForm, TextInput, Edit, Create, Filter,
     SimpleList, useTranslate, BooleanField, BulkDeleteButton
 } from 'react-admin';
-import { _adsClients } from './App';
+import { _adsClients } from './AdsDataProvider';
 import { ListActions, ListEditActions, ListShowActions } from "./CommonActions"
 import { getTitleText } from './parameter';
 import UploadIcon from '@material-ui/icons/CloudUpload'
@@ -54,7 +54,7 @@ const ComponentFilter = (props: any) => (
 const ComponentActions = (props: any) => {
     const translate = useTranslate()
     const [systemName] = useParameter('$(GM_BASE).System.Operation.SystemName', 'GM')
-    const [components] = useParameter('GlobalSettings.Components', {})
+    //const [components] = useParameter('GlobalSettings.Components', {})
     const [openDiffDialog, setOpenDiffDialog] = useState(false)
     const [uploadObj, setUploadObj] = useState({})
     const [currentObj, setCurrentObj] = useState({})
