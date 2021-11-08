@@ -82,6 +82,11 @@ const formatValue = (value: any, record: any, editValue: boolean = false) => {
                 if (ranges.length === 4 && ranges[1] !== ranges[0]) {
                     v = (v / (ranges[1] - ranges[0])) * (ranges[3] - ranges[2])
                 }
+            } else {
+                if (record?.type === 'TIME')
+                    v = v / 1000
+                if (record?.type === 'LTIME')
+                    v = v / 1000000000
             }
             //result = v.toFixed(record.decimals ? record.decimals : 1)
             if (record.type === 'LREAL' || record.type === 'REAL')
@@ -136,6 +141,19 @@ const ParameterActions = ({
                     newData.engmin = ranges[2]
                     newData.engmax = ranges[3]
                 }
+            } else {
+                if (item.type === 'TIME') {
+                    newData.rawmin = "0"
+                    newData.rawmax = "1000"
+                    newData.engmin = "0"
+                    newData.engmax = "1"
+                }
+                if (item.type === 'LTIME') {
+                    newData.rawmin = "0"
+                    newData.rawmax = "1000000000"
+                    newData.engmin = "0"
+                    newData.engmax = "1"
+                }
             }
             if (!newData.rawmin)
                 newData.rawmin = "0"
@@ -146,11 +164,12 @@ const ParameterActions = ({
             if (!newData.engmax)
                 newData.engmax = "0"
             newData.unit = item.commentOptions?.unit ? item.commentOptions.unit : ''
-            newData.format = item.commentOptions?.format ? item.commentOptions.format : (item.commentOptions.unit === '%' ? '0' : '')
+            newData.format = item.commentOptions?.format ? item.commentOptions.format : ((newData.rawmax !== "0") ? '0' : '')
             newData.description = transformLanguage(item?.comment?.trim(), locale)
             newData.alarmoptions = ''
             newData.trendoptions = ''
             newArr.push(newData)
+            return {}
         })
         jsonExport(newArr, { rowDelimiter: ';' }, (err: any, csv: any) => downloadCSV(csv, resource))
         //return exporter(newArr, ...rest)
