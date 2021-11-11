@@ -152,7 +152,7 @@ const darkTheme = {
     ...commonThemeProps,
 }
 
-export const appVersion = { version: '1.0.32P2' }
+export const appVersion = { version: '1.0.32P3' }
 
 const App = () => {
     const translate = useTranslate()

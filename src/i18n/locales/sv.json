@@ -165,7 +165,8 @@
     "currentSection": "Nuvarande sektion",
     "defrostTemperature": "Temperaturgräns",
     "currentPressureLimit": "Stegets tryckgräns",
-    "currentPressure": "Nuvarande tryck"
+    "currentPressure": "Nuvarande tryck",
+    "systemTime": "Systemets tid"
   },
   "pos": {
     "search": "Sök",

@@ -164,7 +164,8 @@
     "currentSection": "Current section",
     "defrostTemperature": "Temperature limit",
     "currentPressureLimit": "Stage pressure limit",
-    "currentPressure": "Current pressure"
+    "currentPressure": "Current pressure",
+    "systemTime": "System time"
   },
   "pos": {
     "search": "Search",
