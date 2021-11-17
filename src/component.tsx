@@ -6,7 +6,7 @@ import {
 } from 'react-admin';
 import { _adsClients } from './AdsDataProvider';
 import { ListActions, ListEditActions, ListShowActions } from "./CommonActions"
-import { getTitleText } from './parameter';
+import { getTitleText } from './parameterList';
 import UploadIcon from '@material-ui/icons/CloudUpload'
 import DownloadIcon from '@material-ui/icons/CloudDownload'
 import { saveAs } from 'file-saver'

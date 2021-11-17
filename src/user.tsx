@@ -5,7 +5,7 @@ import {
     SimpleList, useTranslate, usePermissions
 } from 'react-admin';
 import { ListActions, ListShowCloneActions } from "./CommonActions"
-import { getTitleText } from './parameter';
+import { getTitleText } from './parameterList';
 
 const UserFilter = (props: any) => (
     <Filter {...props}>

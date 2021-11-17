@@ -245,8 +245,10 @@ export const CustomListValueField = (props: any) => {
     let result: JSX.Element
     if (typeof props.record.value === 'boolean')
         result = <BooleanField {...props} />
-    else
+    else if (typeof props.record.value === 'number')
         result = <FunctionField {...props} render={(record: any) => formatValue(record.value, record)} />
+    else
+        result = <TextField {...props} />
     return result
 }
 
@@ -257,6 +259,8 @@ export const CustomValueField = (props: any) => {
         result = <BooleanField {...props} />
     else if (typeof props.record.value === 'number')
         result = <FunctionField {...props} render={(record: any) => formatValue(record.value, record)} />
+    else
+        result = <TextField {...props} />
     return <div >
         <div style={{ fontSize: '60%' }}>{translate('resources.parameter.fields.value')}</div>
         <div style={{ fontSize: '75%' }}>{result}</div>
@@ -524,8 +528,11 @@ const CustomInput = (props: any) => {
             }
             parse={(item: string) => {
                 let v = parseFloat(item)
-                if (props.record?.type === 'xxxxLTIME') {
+                if (props.record?.type === 'LTIME') {
                     v = v * 1000000000
+                }
+                if (props.record?.type === 'TIME') {
+                    v = v * 1000
                 }
                 if (props.record?.commentOptions) {
                     if (props.record.commentOptions.min !== undefined && v < props.record.commentOptions.min)

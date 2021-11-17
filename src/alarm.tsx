@@ -30,7 +30,7 @@ import moment from "moment"
 import { CardActions, Button, useMediaQuery } from "@material-ui/core"
 //import ResetAlarmsButton from "./ResetAlarmsButton"
 import { _adsClients } from "./AdsDataProvider"
-import { getTitleText } from "./parameter"
+import { getTitleText } from "./parameterList"
 import ReactJson from "react-json-view"
 import { useLocale } from "react-admin"
 

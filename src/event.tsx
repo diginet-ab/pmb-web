@@ -15,7 +15,7 @@ import {
 } from "react-admin"
 import { ListActions } from "./CommonActions"
 import moment from "moment"
-import { getTitleText } from "./parameter"
+import { getTitleText } from "./parameterList"
 import { useMediaQuery } from "@material-ui/core"
 import ReactJson from 'react-json-view'
 import JSON_STR from 'json-stringify-date'

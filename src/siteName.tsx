@@ -9,7 +9,7 @@ import { ListEditActions, ListShowActions } from "./CommonActions"
 import InputFiles from './InputFiles'
 import CloudUploadIcon from '@material-ui/icons/CloudUpload'
 import neatCsv from 'neat-csv'
-import { getTitleText } from './parameter';
+import { getTitleText } from './parameterList';
 
 const SiteNameFilter = (props: any) => {
     return <Filter {...props}>

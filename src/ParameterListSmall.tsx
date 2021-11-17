@@ -2,48 +2,13 @@ import * as React from 'react';
 import { useListContext, TextField, EditButton } from 'react-admin';
 import { Card, CardContent, Box } from '@material-ui/core';
 //import { LetterB, LetterE, LetterN, LetterS, LetterT } from './svg/Letters';
-import { CustomValueField } from './parameter';
+import { CustomValueField } from './parameterList';
 import { useTranslate } from 'react-admin';
-
-/*
-const getTypeIcon = (aType: string) => {
-    let result = <LetterE />
-    switch (aType) {
-        case 'BOOL':
-            result = <LetterB />
-            break;
-        case 'TIME':
-        case 'LTIME':
-            result = <LetterT />
-            break;
-        case 'BYTE':
-        case 'WORD':
-        case 'DWORD':
-        case 'SINT':
-        case 'INT':
-        case 'UINT':
-        case 'DINT':
-        case 'UDINT':
-        case 'LINT':
-        case 'ULINT':
-        case 'REAL':
-        case 'LREAL':
-            result = <LetterN />
-            break
-        default:
-            if (aType.indexOf('STRING') >= 0)
-                result = <LetterS />
-    }
-    return result
-}
-*/
 
 const cardStyle = {
     width: 300,
     minHeight: 20,
     marginTop: '0.5em',
-    //display: 'inline-block',
-    //verticalAlign: 'top'
 }
 
 const CustomField = (props: any) => {
@@ -80,13 +45,7 @@ const ParameterGrid = () => {
         </div>
     )
 }
-/*
-export const ParameterListSmall = (props: any) => (
-    <List title="Parameters" {...props} >
-        <ParameterGrid />
-    </List>
-)
-*/
+
 export const ParameterListSmall = (props: any) => (
     <ParameterGrid {...props} />
 )
