@@ -3,7 +3,7 @@ export const domainMessages: any = {
     sv: {
         "Network Error": "Nätverksfel",
         custom: {
-            title: "NIBE AirSite GreenMaster",
+            title: "PTA PMB",
             email_or_username: "Email eller användarnamn",
             password: 'Lösenord',
             dateAfter: "Datum efter",
@@ -224,7 +224,7 @@ export const domainMessages: any = {
     en: {
         "Network Error": "Network Error",
         custom: {
-            title: "NIBE AirSite GreenMaster",
+            title: "PTA PMB",
             email_or_username: "Email or Username",
             password: 'Password',
             dateAfter: "Date after",

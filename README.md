@@ -1,4 +1,4 @@
-# NIBE AirSite GreenMaster PLC with web interface
+# PTA PMB PLC with web interface
 
 Version 0.1 / 2021-01-22 / AW
 
@@ -36,7 +36,7 @@ Displays an overview of the unit operation.
 
 #### On/off
 
-Enable and disable the GreenMaster unit. Start stop the TwinCAT PLC. 
+Enable and disable the PMB unit. Start stop the TwinCAT PLC. 
 
 <img src="./readme-assests/onoff.png" style="zoom:75%;" />
 
@@ -254,7 +254,7 @@ Site specific names can be assigned to parameters and displayed in the web inter
 
 #### PLC components
 
-Components are used to divide the PLC application in several parts that can be activated depending on the site. The NIBE AirSite software is divided in one component for each unit (product) plus some basic components
+Components are used to divide the PLC application in several parts that can be activated depending on the site. The PTA PMB software is divided in one component for each unit (product) plus some basic components
 
 - GM-BASE - Basic functionality such as alarms and temperature control
 - GM-IO - Input and outputs on the PLC

@@ -122,7 +122,7 @@ const Login = ({ location }: any) => {
                         </div>
                         <div style={{ color: '#283593' }}>
                             <Box display="flex" flexDirection="column" alignItems="center" >
-                                <p><b>NIBE AirSite GreenMaster</b></p>
+                                <p><b>PTA PMB</b></p>
                                 <p>{systemName}</p>
                                 <p>{appInfo.hostName}&nbsp;({plcType})</p>
                                 <RefreshButton label="" />

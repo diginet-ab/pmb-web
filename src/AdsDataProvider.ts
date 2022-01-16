@@ -11,7 +11,7 @@ export const useAdsDataProvider = () => {
     const currentPermissions = usePermissions()
     const [adsReady, setAdsReady] = useState(false)
     const [adsDataProvider, setAdsDataProvider] = useState(null as any)
-    // log('Information', 'NIBE AirSite GreenMaster {version} web app starting', appVersion)
+    // log('Information', 'PTA PMB {version} web app starting', appVersion)
     useEffect(() => {
         try {
             (async () => {

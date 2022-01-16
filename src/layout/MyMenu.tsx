@@ -86,7 +86,7 @@ export const MyMenu: FC<MenuProps> = ({ hasDashboard }) => {
                 <p></p>
                 <Tooltip title={translate(systemState ? (plcState === AdsState.Run ? 'custom.systemEN' : 'custom.systemEN_NoPLCRun') : 'custom.systemEN_Not')}>
                     <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', color: "white" }}>
-                        <p>GM</p> {systemState ?
+                        <p>PMB</p> {systemState ?
                             <PlayIcon style={{ fill: plcState === AdsState.Run ? "lightgreen" : "white" }} />
                             :
                             <StopIcon style={{ fill: "white" }} />}

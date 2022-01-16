@@ -2,7 +2,7 @@
   "Network Error": "Nätverksfel",
   "custom": {
     "plcTree": {
-      "GM_BASE_NODE": "Green Master",
+      "GM_BASE_NODE": "Base",
       "GM_IO_NODE": "Ingångar / Utgångar",
       "GM_IO": {
         "AIn": "Analoga ingångar",
@@ -17,7 +17,7 @@
       "EXTRA_ALARMS_NODE": "Extra larmingångar",
       "SMOKE_CONTROL_ADS_NODE": "ADS Smoke Control"
     },
-    "title": "NIBE AirSite GreenMaster",
+    "title": "PTA PMB",
     "email_or_username": "Email eller användarnamn",
     "password": "Lösenord",
     "dateAfter": "Datum efter",

@@ -127,8 +127,8 @@ const commonThemeProps = {
 const lightTheme = {
     palette: {
         type: 'light' as PaletteType, // Don't forget to specify the palette type
-        //primary: { main: red[900] },
-        secondary: { main: '#BF2329' },
+        primary: { main: '#004d40' },
+        secondary: { main: '#39796b' },
         //secondary: { main: '#002F4C' },
         white: { main: '#ffffff' },
     },
@@ -138,7 +138,8 @@ const lightTheme = {
 const darkTheme = {
     palette: {
         type: 'dark' as PaletteType, // Don't forget to specify the palette type
-        secondary: { main: '#BF2329' },
+        primary: { main: '#004d40' },
+        secondary: { main: '#39796b' },
         white: { main: '#ffffff' },
         /*
         primary: {
@@ -196,7 +197,7 @@ const App = () => {
         ]}
     </Admin>} /> :
         <div style={{ position: 'absolute', left: '50%', top: '50%', color: '#283593', transform: 'translate(-50%, -50%)' }} >
-            <b>NIBE AirSite GreenMaster {appVersion.version}</b>
+            <b>PTA PMB {appVersion.version}</b>
             <Loader
                 type="Puff"
                 color="#00BFFF"

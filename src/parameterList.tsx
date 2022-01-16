@@ -120,13 +120,13 @@ const ParameterActions = ({
     const dataProvider = useDataProvider()
     const refresh = useRefresh()
     const [checked, setChecked] = useState(false)
-    let device = getLocalStorageItem("webPortDevice", 'OBJECT_LB01')
+    let device = getLocalStorageItem("webPortDevice", 'PMB')
     const myExporter = (data: any, ...rest: any[]) => {
         console.log(data)
         const newArr: any[] = []
         data.map((item: any) => {
             const newData: any = {}
-            let path = item.path.split('.').slice(1).join('.')
+            let path = item.path.split('.').slice().join('.')
             if (path)
                 path += '_'
             newData.name = device + "_" + path.toUpperCase() + item.name
@@ -164,9 +164,10 @@ const ParameterActions = ({
             if (!newData.engmax)
                 newData.engmax = "0"
             newData.unit = item.commentOptions?.unit ? item.commentOptions.unit : ''
-            newData.format = item.commentOptions?.format ? item.commentOptions.format : ((newData.rawmax !== "0") ? '0' : '')
+            const decFormat = item.commentOptions?.decimals ? "0.".concat('0'.repeat(item.commentOptions?.decimals)) : ''
+            newData.format = item.commentOptions?.format ? item.commentOptions.format : ((newData.rawmax !== "0") ? '0' : decFormat)
             newData.description = transformLanguage(item?.comment?.trim(), locale)
-            newData.alarmoptions = ''
+            newData.alarmoptions = (item.name === 'AL2') ? 'autoack:1' : ''
             newData.trendoptions = ''
             newArr.push(newData)
             return {}

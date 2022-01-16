@@ -1,7 +1,7 @@
 {
   "custom": {
     "plcTree": {
-      "GM_BASE_NODE": "Green Master",
+      "GM_BASE_NODE": "Base",
       "GM_IO_NODE": "Inputs / Outputs",
       "GM_IO": {
         "AIn": "Analog inputs",
@@ -16,7 +16,7 @@
       "EXTRA_ALARMS_NODE": "Extra alarms",
       "SMOKE_CONTROL_ADS_NODE": "ADS Smoke Control"
     },
-    "title": "NIBE AirSite GreenMaster",
+    "title": "PTA PMB",
     "email_or_username": "Email or Username",
     "password": "Password",
     "dateAfter": "Date after",

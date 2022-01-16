@@ -606,7 +606,7 @@ export const CheckPlcConnection = ({ render }: any) => {
             render
             :
             <div style={{ position: 'absolute', left: '50%', top: '50%', color: '#283593', transform: 'translate(-50%, -50%)' }} >
-                <p><b>NIBE AirSite GreenMaster {appVersion.version}</b></p>
+                <p><b>PTA PMB {appVersion.version}</b></p>
                 {plcState && !validPlcState ?
                     <div>
                         <p></p>
