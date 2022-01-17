@@ -73,7 +73,7 @@ const formatValue = (value: any, record: any, editValue: boolean = false) => {
             let duration = moment.duration(value)
             result = duration.asSeconds().toString()
         } else if (record?.type === 'xxxLTIME') {
-            let duration = moment.duration(value )
+            let duration = moment.duration(value)
             result = duration.asSeconds().toString()
         } else if (typeof record?.value === 'number') {
             let v = value as number
@@ -96,6 +96,16 @@ const formatValue = (value: any, record: any, editValue: boolean = false) => {
             result = removeTrailingZeros(result)
         }
     }
+    return result
+}
+
+const sortLines = (lines: string, includeFirstLine: boolean) => {
+    let allLines = lines.split(/\r?\n/)
+    let valueLines = includeFirstLine ? allLines : allLines.slice(1)
+    let sortedValueLines = valueLines.sort()
+    if (!includeFirstLine)
+        sortedValueLines.unshift(allLines[0])
+    let result = sortedValueLines.join("\n")
     return result
 }
 
@@ -123,6 +133,7 @@ const ParameterActions = ({
     let device = getLocalStorageItem("webPortDevice", 'PMB')
     const myExporter = (data: any, ...rest: any[]) => {
         console.log(data)
+        const replacer = "$#@"
         const newArr: any[] = []
         data.map((item: any) => {
             const newData: any = {}
@@ -131,7 +142,7 @@ const ParameterActions = ({
                 path += '_'
             newData.name = device + "_" + path.toUpperCase() + item.name
             newData.device = device
-            newData.address = item.fullPath
+            newData.address = `${replacer}${item.fullPath}${replacer}`
             newData.datatype = item.type === 'BOOL' ? 'DIGITAL' : item.type
             if (item.commentOptions?.scale) {
                 let ranges = item.commentOptions.scale.split(' ')
@@ -163,16 +174,22 @@ const ParameterActions = ({
                 newData.engmin = "0"
             if (!newData.engmax)
                 newData.engmax = "0"
-            newData.unit = item.commentOptions?.unit ? item.commentOptions.unit : ''
-            const decFormat = item.commentOptions?.decimals ? "0.".concat('0'.repeat(item.commentOptions?.decimals)) : ''
-            newData.format = item.commentOptions?.format ? item.commentOptions.format : ((newData.rawmax !== "0") ? '0' : decFormat)
-            newData.description = transformLanguage(item?.comment?.trim(), locale)
-            newData.alarmoptions = (item.name === 'AL2') ? 'autoack:1' : ''
-            newData.trendoptions = ''
+            newData.unit = item.commentOptions?.unit ? `${replacer}${item.commentOptions.unit}${replacer}` : `${replacer}${replacer}`
+            const decFormat = item.commentOptions?.decimals ? `${"0.".concat('0'.repeat(item.commentOptions?.decimals))}` : ``
+            newData.format = item.commentOptions?.format ? `${replacer}${item.commentOptions.format}${replacer}` : ((newData.rawmax !== "0") ? `${replacer}0${replacer}` : `${replacer}${decFormat}${replacer}`)
+            newData.description = `${replacer}${transformLanguage(item?.comment?.trim(), locale)}${replacer}`
+            newData.alarmoptions = (item.name === 'AL2') ? `${replacer}autoack:1${replacer}` : `${replacer}${replacer}`
+            newData.trendoptions = `${replacer}${replacer}`
             newArr.push(newData)
             return {}
         })
-        jsonExport(newArr, { rowDelimiter: ';' }, (err: any, csv: any) => downloadCSV(csv, resource))
+        jsonExport(newArr, { rowDelimiter: ';' }, (err: any, csv: string) => {
+            console.log(csv)
+            csv = csv.replaceAll(replacer, '"')
+            csv = sortLines(csv, false)
+            csv = csv + "\n"
+            return downloadCSV(csv, resource);
+        })
         //return exporter(newArr, ...rest)
         return undefined
     }

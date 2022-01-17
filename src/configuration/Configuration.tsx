@@ -19,7 +19,7 @@ const useStyles = makeStyles({
 
 const Configuration = () => {
     const [allUserMessages] = useState(getLocalStorageItemBoolean("allUserMessages", true))
-    const [device, setDevice] = useState(getLocalStorageItem("webPortDevice", 'OBJECT_LB01'))
+    const [device, setDevice] = useState(getLocalStorageItem("webPortDevice", 'PMB'))
     const [linkToWebPort, setLinkToWebPort] = useState(getLocalStorageItem("webPortLink", 'http://localhost:8090'))
     const [openInNewTab, setOpenInNewTab] = useState(getLocalStorageItemBoolean("webPortLinkNewTab", false))
     useEffect(() => {
