@@ -38,7 +38,7 @@ export const getAdsConnections = async (viaNodeServer: AdsConnections = AdsConne
             url = "http://localhost:8080/http://192.168.2.225"
             symbolFileUrl = "http://localhost:8080/http://localhost:8082"
         }
-        const adsWebClient = new AdsWebClient(url, plcName, symbolFileUrl, parseInt(getLocalStorageItem('adsPortNr', '851')))
+        const adsWebClient = new AdsWebClient(url, getLocalStorageItem('plcName', plcName), symbolFileUrl, parseInt(getLocalStorageItem('adsPortNr', '851')))
         await adsWebClient.ready()
         const adsDataProvider = new AdsDataProvider(adsWebClient)
         await adsDataProvider.ready()

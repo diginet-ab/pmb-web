@@ -22,6 +22,7 @@ const Configuration = () => {
     const [device, setDevice] = useState(getLocalStorageItem("webPortDevice", 'PMB'))
     const [linkToWebPort, setLinkToWebPort] = useState(getLocalStorageItem("webPortLink", 'http://localhost:8090'))
     const [openInNewTab, setOpenInNewTab] = useState(getLocalStorageItemBoolean("webPortLinkNewTab", false))
+    const [plcName, setPlcName] = useState(getLocalStorageItem("plcName", 'PLC1'))
     const [plcPort, setPlcPort] = useState(getLocalStorageItem("adsPortNr", '851'))
     useEffect(() => {
         setLocalStorageItemBoolean("allUserMessages", allUserMessages)
@@ -42,6 +43,10 @@ const Configuration = () => {
     const plcPortChange = (e: any) => {
         setPlcPort(e.target.value)
         setLocalStorageItem('adsPortNr', e.target.value)
+    }
+    const plcNameChange = (e: any) => {
+        setPlcName(e.target.value)
+        setLocalStorageItem('plcName', e.target.value)
     }
     const linkToWebPortChange = (e: any) => {
         setLinkToWebPort(e.target.value)
@@ -134,6 +139,10 @@ const Configuration = () => {
                 <CardHeader title={'PLC'} />
                 <CardContent>
                     <Box display="flex" flexDirection="column" alignItems="left" >
+                        <Box display="flex" flexDirection="row" alignItems="center" >
+                            <div className={classes.label} >{'PLC name'}</div>
+                            <TextField value={plcName} onChange={plcNameChange} />
+                        </Box>
                         <Box display="flex" flexDirection="row" alignItems="center" >
                             <div className={classes.label} >{'PLC port'}</div>
                             <TextField value={plcPort} onChange={plcPortChange} />
