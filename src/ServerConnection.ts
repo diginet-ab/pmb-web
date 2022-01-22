@@ -3,6 +3,7 @@ import { BrowserWebSocketTransport, RpcClient, IDsModule, Converter } from '@dec
 import { AdsDataProvider } from '@diginet/ads-web-client'
 import { AdsWebClient } from '@diginet/ads-web-client'
 import JSON_STR from 'json-stringify-date'
+import { getLocalStorageItem } from './configuration/Configuration'
 
 export interface AdsClients {
     error?: { code: boolean, message: string }
@@ -37,7 +38,7 @@ export const getAdsConnections = async (viaNodeServer: AdsConnections = AdsConne
             url = "http://localhost:8080/http://192.168.2.225"
             symbolFileUrl = "http://localhost:8080/http://localhost:8082"
         }
-        const adsWebClient = new AdsWebClient(url, plcName, symbolFileUrl)
+        const adsWebClient = new AdsWebClient(url, plcName, symbolFileUrl, parseInt(getLocalStorageItem('adsPortNr', '851')))
         await adsWebClient.ready()
         const adsDataProvider = new AdsDataProvider(adsWebClient)
         await adsDataProvider.ready()
